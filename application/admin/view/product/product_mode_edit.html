@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>多啦优选后台管理系统-商品模型添加</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__STATIC__/static/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/static/css/weadmin.css">
+    <link rel="stylesheet" href="__STATIC__/static/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="weadmin-body">
+        <div class="Tips">
+            <h4>* 操作提示</h4>
+            <p>商品模型是对不同商品的分组</p>
+            <p>商品模型关联商品规格，商品属性</p>
+            <p>一个商品归属到这个商品的模型就知道它在那里规格属性</p>
+        </div>
+        <form action="{:url('admin/product/product_mode_edit')}" method="post">
+            <input type="hidden" name="type_id" value="{$type['id']}" />
+
+            模型名称：<input type="text" name="name" class="inp_box" value="{$type['name']}"><br />
+
+            <input type="submit" name="sub" value="确认提交" class="sub">
+
+        </form>
+
+        <script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
+    </div>
+</body>
+<style>
+    .Tips {
+        background-color: bisque;
+        padding: 10px 20px;
+        border-radius: 6px;
+    }
+    
+    form {
+        margin: 20px 0;
+    }
+    
+    form .inp_box {
+        width: 220px;
+        height: 26px;
+        outline: none;
+    }
+    
+    form .sub {
+        margin-top: 16px;
+        margin-left: 80px;
+        width: 80px;
+        height: 32px;
+        outline: none;
+    }
+</style>
+
+</html>
