@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"E:\shop\public/../application/admin\view\order\order_goods_list.html";i:1533698510;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"E:\shop\public/../application/admin\view\order\order_goods_list.html";i:1533878306;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -45,10 +45,10 @@
 			</form>
 		</div>
 		<div class="weadmin-block">
-			<button class="layui-btn layui-btn-danger" onclick="delAll()">
+		<!-- 	<button class="layui-btn layui-btn-danger" onclick="delAll()">
 				<i class="layui-icon"></i>批量删除</button>
 			<button class="layui-btn" onclick="WeAdminShow('添加订单信息','./order_add.html')">
-				<i class="layui-icon"></i>添加</button>
+				<i class="layui-icon"></i>添加</button> -->
 			<span class="fr" style="line-height:40px">共有数据:<?php echo $count; ?>条</span>
 		</div>
 		<table class="layui-table">
@@ -89,12 +89,12 @@
 					<td><?php echo $v['final_price']; ?></td>
 					<td><?php echo $v['delivery_id']; ?></td>
 					<td class="td-manage">
-						<a title="查看" onclick="WeAdminShow('查看订单详细信息','order_view.html')" href="javascript:;">
-							<i class="layui-icon">&#xe63c;</i>
+						<a title="编辑" onclick="WeAdminShow('查看订单详细信息','<?php echo url('admin/Order/order_goods_edit'); ?>?id=<?php echo $v['id']; ?>')" href="javascript:;">
+							<i class="layui-icon">&#xe63c;</i>编辑
 						</a>
-						<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+						<!-- <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
 							<i class="layui-icon">&#xe640;</i>
-						</a>
+						</a> -->
 					</td>
 				</tr>
 				<?php endforeach; endif; else: echo "" ;endif; ?>
@@ -104,7 +104,7 @@
 	<?php echo $order_goods->render(); ?>
 	<script>
 		layui.extend({
-			admin: '{/}../../static/js/admin'
+			admin:'/static/static/js/admin'
 		});
 		layui.use(['laydate', 'jquery', 'admin'], function () {
 			var laydate = layui.laydate,

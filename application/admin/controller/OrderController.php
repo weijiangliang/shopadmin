@@ -76,6 +76,31 @@ public function order_goods_list()
   	]);
 
 }
+
+
+//查看订单商品
+public function order_view(){
+
+		$id = trim(input('id'));
+		if(!$id){
+		 $this->error('订单查看异常',url('order/son_order_list'));
+		 die;
+		}
+		$order_goods = db('order_goods')->where('order_info_id',$id)->select();
+		$order_info = db('order_info')->where('order_info_id',$id)->find();
+		$order = db('order')->where('order_id',$order_info['order_id'])->find();
+		if(!$order_goods){
+			$this->error('订单异常或没有订单商品',url('order/son_order_list'));
+		 die;
+		}
+     return $this->fetch('order_view',[
+     	'order_goods'=>$order_goods,
+     	'order_info'=>$order_info,
+     	'order'=>$order
+     	]);
+	}
+
+
 //会员账户
 public function member_account()
 {
@@ -83,7 +108,70 @@ public function member_account()
   return $this->fetch('member_account');
 
 }
+//删除商品
+public function ajaxorder_delgoods(){
+	$id = trim(input('id'));
+	if(!$id){
+		$state = 2;;
+		$msg = '删除失败';
+	}
+	$order_goods = db('order_goods')->where('id',$id)->delete();
+	if(!$order_goods){
+		$state = 2;;
+		$msg = '删除失败';
+	}else{
+		$state = 1;;
+		$msg = '删除成功';
+	}
+	$callback=[
+	'state'=>$state,
+	'msg'=>$msg
+	];
+	return json($callback);
+	}
 
+//订单商品编辑
+public function order_goods_edit(){
+ if(Request::instance()->isPost()){
+   $id = trim(input('order_goods_id'));
+   $data['good_num'] = trim(input('good_num'));
+   $data['final_price'] = trim(input('final_price'));
+   
+   //$data['admin_user']=session('admin_user');
+   if(!$id||!$data['good_num']||! $data['final_price']){
+   	$this->error('请输入数据',url('Order/order_goods_list'));
+   	die;
+   }
+    $order_goods= db('order_goods')->where('id',$id)->update($data);
+    $data_edit['good_num_after'] = $data['good_num'];
+    $data_edit['final_price_after'] =$data['final_price'];
+    $data_edit['create_time']=time();
+	$data_edit['order_good_id']=$id;
+	$data_edit['final_price_ago'] = trim(input('final_price_ago'));
+	$data_edit['good_num_ago'] = trim(input('good_num_ago'));
+   if(!$order_goods){
+   	     $data_edit['status']=2;
+        $edit = db('order_goodedit_log')->insert($data_edit);
+        $this->error('编辑失败',url('Order/order_goods_list'));
+        die;
+      }else{
+      	 $data_edit['status']=1;
+      	 $edit = db('order_goodedit_log')->insert($data_edit);
+         $this->success('编辑成功',url('Order/order_goods_list'));
+        die;
+      }
 
+	}
+	$id = trim(input('id'));
+	if(!$id){
+		$this->error('订单商品编辑异常');
+		die;
+	}
+	$order_goods = db('order_goods')->where('id',$id)->find();
+	return $this->fetch('order_goods_edit',[
+		'order_goods'=>$order_goods
+		]);
+
+}
 
 }

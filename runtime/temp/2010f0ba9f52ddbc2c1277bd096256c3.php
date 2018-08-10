@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"E:\shop\public/../application/admin\view\product\product_list_add.html";i:1533350530;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"E:\shop\public/../application/admin\view\product\product_list_add.html";i:1533892410;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/static/css/weadmin.css">
     <link rel="stylesheet" href="/static/static/css/proAdd.css">
     <link rel="stylesheet" href="/static/static/css/bootstrap.min.css">
+    <script src="/static/static/js/jquery.js"></script>
 </head>
 
 <body>
@@ -75,7 +76,7 @@
                             </div>
                         </div> -->
                          <div class="layui-form-item">
-                            <label for="product_ownCate" class="layui-form-label">
+                            <label for="product_ownCate" class="layui-form-label" >
                                 <span class="we-red">*</span>商品分类
                             </label>
                             <div class="layui-input-inline">
@@ -92,6 +93,64 @@
                                 </select>
                             </div>
                         </div>
+
+                        <script type="text/javascript">
+                     $(function(){
+                           $("#cate_one_id").change(function(){
+
+                              $("#cate_two_id").html("");
+                              $("#cate_three_id").html("");
+                              //var option = $("<option value='11'>333333</option>");
+                              // $("#cateson_id").append(option);
+                             var parent_id = $('#cate_one_id option:selected').val();
+                                     $.post('ajax_productcate',{parent_id:parent_id},function(data){
+                                        console.log(data);
+                                         if(data.statu==1&&data.str!=''){
+                                            var option = $(data.str);
+                                               $("#cate_two_id").append(option); 
+                                                }else{
+                                                    alert(data.msg);
+                                                }
+                                     });
+                         });
+                           //这是进来默认的触发
+                        var parent_id = $('#cate_one_id option:selected').val();
+                           var parent_id = $('#cate_one_id option:selected').val();
+                                     $.post('ajax_productcate',{parent_id:parent_id},function(data){
+                                        console.log(data);
+                                           if(data.statu==1){
+                                            var option = $(data.str);
+                                               $("#cate_two_id").append(option); 
+                                                }else{
+                                                    alert(data.msg);
+                                                }
+                                            });
+
+                  $("#cate_two_id").change(function(){
+                    
+                              $("#cate_three_id").html("");
+                             var parent_id = $('#cate_two_id option:selected').val();
+                             if(parent_id!=''){
+                                $.post('ajax_productcate',{parent_id:parent_id},function(data){
+                                        console.log(data);
+                                         if(data.statu==1&&data.str!=''){
+                                            var option = $(data.str);
+                                               $("#cate_three_id").append(option); 
+                                                }else{
+                                                    alert(data.msg);
+                                                }
+                                     });
+                            }else{
+                                alert('请选择父级分类');
+                            }
+                                     
+                         });
+
+
+
+
+                       });
+                        </script>
                         <div class="layui-form-item">
                             <label for="product_ownCate" class="layui-form-label">
                                 <span class="we-red">*</span>商品品牌
@@ -248,7 +307,8 @@
         </div>
 </body>
 <script src="/static/lib/layui/layui.js"></script>
-<script>
+
+<!-- <script>
     // //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
     // layui.use('element', function () {
     //     var element = layui.element;
@@ -276,7 +336,7 @@
 
 });
 
-</script>
+</script> -->
 <style>
     .layui-form-item .layui-input-inline:nth-of-type(1) {
         width: 700px !important;

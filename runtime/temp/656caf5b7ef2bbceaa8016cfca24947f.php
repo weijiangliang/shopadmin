@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\order\son_order_list.html";i:1533696833;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\order\son_order_list.html";i:1533869863;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="/static/static/css/font.css">
 	<link rel="stylesheet" href="/static/static/css/weadmin.css">
-	<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+	<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -44,7 +44,6 @@
 			</form>
 		</div>
 		<div class="weadmin-block">
-				<i class="layui-icon"></i>添加</button>
 			<span class="fr" style="line-height:40px">共有数据：<?php echo $count; ?>条</span>
 		</div>
 		<table class="layui-table">
@@ -83,9 +82,10 @@
 					<td><?php echo $v['admin_note']; ?></td>
 					<td><?php echo $v['suppliers_id']; ?></td>
 					<td class="td-manage">
-						<a title="查看" href="<?php echo url('admin/Order/order_goods'); ?>">
+					<!-- 	<a title="查看" href="<?php echo url('admin/Order/order_view'); ?>?id =<?php echo $v['order_info_id']; ?> ">
 							<i class="layui-icon">&#xe63c;</i>查看
-						</a>
+						</a> -->
+						<a class="layui-btn" onclick="WeAdminShow('添加管理员','<?php echo url('admin/Order/order_view'); ?>?id=<?php echo $v['order_info_id']; ?>')"><i class="layui-icon"></i>查看</a>
 					</td>
 				</tr>
 				<?php endforeach; endif; else: echo "" ;endif; ?>
@@ -95,7 +95,7 @@
 	<?php echo $order_info->render(); ?>
 	<script>
 		layui.extend({
-			admin: '{/}../../static/js/admin'
+			admin: '/static/static/js/admin'
 		});
 		layui.use(['laydate', 'jquery', 'admin'], function () {
 			var laydate = layui.laydate,

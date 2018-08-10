@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="__STATIC__/static/css/font.css">
 	<link rel="stylesheet" href="__STATIC__/static/css/weadmin.css">
-	<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+	<script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -43,7 +43,6 @@
 			</form>
 		</div>
 		<div class="weadmin-block">
-				<i class="layui-icon"></i>添加</button>
 			<span class="fr" style="line-height:40px">共有数据：{$count}条</span>
 		</div>
 		<table class="layui-table">
@@ -82,9 +81,10 @@
 					<td>{$v['admin_note']}</td>
 					<td>{$v['suppliers_id']}</td>
 					<td class="td-manage">
-						<a title="查看" href="{:url('admin/Order/order_goods')}">
+					<!-- 	<a title="查看" href="{:url('admin/Order/order_view')}?id ={$v['order_info_id']} ">
 							<i class="layui-icon">&#xe63c;</i>查看
-						</a>
+						</a> -->
+						<a class="layui-btn" onclick="WeAdminShow('添加管理员','{:url(\'admin/Order/order_view\')}?id={$v[\'order_info_id\']}')"><i class="layui-icon"></i>查看</a>
 					</td>
 				</tr>
 				{/foreach}
@@ -94,7 +94,7 @@
 	{$order_info->render()}
 	<script>
 		layui.extend({
-			admin: '{/}../../static/js/admin'
+			admin: '/static/static/js/admin'
 		});
 		layui.use(['laydate', 'jquery', 'admin'], function () {
 			var laydate = layui.laydate,

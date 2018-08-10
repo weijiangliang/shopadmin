@@ -302,8 +302,57 @@ public function product_brand_del()
         ]);
     }
 
+//添加商品联动分类表
+public function ajax_productcate(){
+     $str = '';
+     $parent_id =trim(input('parent_id'));
+
+     if(!$parent_id){
+        $statu = 2;
+        $msg = '获取分类异常';
+        $str = '';
+         $callback=[
+       'statu'=>$statu,
+       'msg'=>$msg,
+       'str'=>$str
+       ];
+return json($callback);
+        die;
+      }
+       $categorys = db('goods_category')->where('parent_id',$parent_id)->select();
+       if(!$categorys||count($categorys)<=0){
+        $statu = 2;
+        $msg = '获取分类异常';
+        $str = '';
+         $callback=[
+       'statu'=>$statu,
+       'msg'=>$msg,
+       'str'=>$str
+       ];
+return json($callback);
+        die;
+       }else{
+        $statu = 1;
+        $msg="获取成功";
+        foreach ($categorys as  $v) {
+          $str .=" <option value='".$v['id']."'>".$v['name']."</option>";
+         }
+       
+       $callback=[
+       'statu'=>$statu,
+       'msg'=>$msg,
+       'str'=>$str
+       ];
+return json($callback);
+}
+}
+//获取第三季分类
+public function ajax_productcatethree(){
+
+}
 
 
+//增加规格
  public function product_guige_add()
     {
 
@@ -458,7 +507,7 @@ public function product_list()
       $data['good_name']=trim(input('product_name'));
       $data['good_remark']=trim(input('good_remark'));
       $data['good_sn']=trim(input('good_sn'));
-      $data['cate_id']=trim(input('cate_1'));
+      $data['cate_id']=trim(input('cate_3'));
       $data['brand_id']=trim(input('brand_id'));
       $data['shop_price']=trim(input('product_price'));
       $data['market_price']=trim(input('market_price'));
@@ -468,6 +517,7 @@ public function product_list()
       $data['store_num']=trim(input('store_num'));
       $data['is_real']=trim(input('real'));
       $data['good_content']=trim(input('desc'));
+      $data['add_time']=time();
        if($file){
           $dataimg = $this->upload($file);
             if($dataimg['statu']==0){

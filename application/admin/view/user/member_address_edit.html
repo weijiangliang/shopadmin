@@ -18,13 +18,14 @@
 
 <body>
     <div class="weadmin-body">
-        <form class="layui-form" action="{:url('admin/User/member_address_add')}" method="post">
+        <form class="layui-form" action="{:url('admin/User/member_address_edit')}" method="post">
+        <input type="hidden" name="id" value="{$address['id']}">
             <div class="layui-form-item">
                 <label for="vip_id" class="layui-form-label">
 					<span class="we-red">*</span>用户id
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="vip_id" name="user_id" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="请输入用户的user_id">
+                    <input type="text" id="vip_id" name="user_id" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="{$address['user_id']}">
                 </div>
                 <!-- <div class="layui-form-mid layui-word-aux">
 						请设置至少5个字符，将会成为您唯一的登录名
@@ -36,7 +37,7 @@
 					<span class="we-red">*</span>收件人姓名
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="" name="name" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                    <input type="text" id="" name="name" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="{$address['name']}">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -44,7 +45,7 @@
 					<span class="we-red">*</span>身份证号
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="" name="id_card" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                    <input type="text" id="" name="id_card" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="{$address['id_card']}">
                 </div>
             </div>
            <div class="layui-form-item">
@@ -52,7 +53,7 @@
 					<span class="we-red">*</span>收件人电话
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="" name="phone" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                    <input type="text" id="" name="phone" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="{$address['phone']}">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -60,7 +61,7 @@
                             <span class="we-red">*</span>收货地址
                         </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="" name="address" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                    <input type="text" id="" name="address" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="{$address['address']}">
                 </div>
             </div>
             <div class="layui-form-item">

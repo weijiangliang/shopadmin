@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\user\member_edit.html";i:1533800691;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -7,8 +8,8 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel="stylesheet" href="__STATIC__/static/css/font.css">
-<!-- 	<link rel="stylesheet" href="__STATIC__/static/css/weadmin.css"> -->
+	<link rel="stylesheet" href="/static/static/css/font.css">
+<!-- 	<link rel="stylesheet" href="/static/static/css/weadmin.css"> -->
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -18,14 +19,14 @@
 
 <body>
 	<div class="weadmin-body">
-		<form class="layui-form" action="{:url('admin/User/member_edit')}" method="post">
-		<input type="hidden" name="id" value="{$user['id']}">
+		<form class="layui-form" action="<?php echo url('admin/User/member_edit'); ?>" method="post">
+		<input type="hidden" name="id" value="<?php echo $user['id']; ?>">
 			<div class="layui-form-item">
 				<label for="vip_id" class="layui-form-label">
 					<span class="we-red">*</span>手机号
 				</label>
 				<div class="layui-input-inline">
-					<input type="text" id="vip_id" name="phone" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="{$user['phone']}"> 
+					<input type="text" id="vip_id" name="phone" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="<?php echo $user['phone']; ?>"> 
 				</div>
 				<!-- <div class="layui-form-mid layui-word-aux">
 						请设置至少5个字符，将会成为您唯一的登录名
@@ -36,25 +37,25 @@
 					<span class="we-red">*</span>用户昵称
 				</label>
 				<div class="layui-input-inline">
-					<input type="text" id="vip_name" name="nickname" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="{$user['nickname']}">
+					<input type="text" id="vip_name" name="nickname" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="<?php echo $user['nickname']; ?>">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="vip_sex" class="layui-form-label">性别</label>
 				<div class="layui-input-block" id="sex">
-				{if condition="$user['sex']==1"}
+				<?php if($user['sex']==1): ?>
 					<input type="radio" name="sex" value="2" title="男" >男
 					<input type="radio" name="sex" value="3" title="女">女
 					<input type="radio" name="sex" value="1" title="未知" checked>保密
-					{elseif condition="$user['sex']==2"}
+					<?php elseif($user['sex']==2): ?>
 					<input type="radio" name="sex" value="2" title="男" checked>男
 					<input type="radio" name="sex" value="3" title="女">女
 					<input type="radio" name="sex" value="1" title="未知">保密
-					{else}
+					<?php else: ?>
 					<input type="radio" name="sex" value="2" title="男" >男
 					<input type="radio" name="sex" value="3" title="女" checked>女
 					<input type="radio" name="sex" value="1" title="未知">保密
-					{/if}
+					<?php endif; ?>
 
 				</div>
 			</div>
@@ -66,9 +67,9 @@
 				</label>
 				<div class="layui-input-inline">
 				<select name="user_role">
-				{foreach name="level" item="v"}
-				<option value="{$v['level_id']}" {if condition="$v['level_id']==$user['user_role']"} selected {/if}>{$v['level_name']}</option>
-				{/foreach}
+				<?php if(is_array($level) || $level instanceof \think\Collection || $level instanceof \think\Paginator): if( count($level)==0 ) : echo "" ;else: foreach($level as $key=>$v): ?>
+				<option value="<?php echo $v['level_id']; ?>" <?php if($v['level_id']==$user['user_role']): ?> selected <?php endif; ?>><?php echo $v['level_name']; ?></option>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
 				</select>
 				</div>
 			</div>
@@ -77,7 +78,7 @@
 					<span class="we-red">*</span>支付密码
 				</label>
 				<div class="layui-input-inline">
-					<input type="text" id="vip_address" name="pay_password" autocomplete="off" class="layui-input" value="{$user['pay_password']}">
+					<input type="text" id="vip_address" name="pay_password" autocomplete="off" class="layui-input" value="<?php echo $user['pay_password']; ?>">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -85,7 +86,7 @@
 					<span class="we-red">*</span>生日
 				</label>
 				<div class="layui-input-inline">
-					<input type="text" id="bt_date" name="birthday" autocomplete="off" class="layui-input" value="{$user['birthday']}" >
+					<input type="text" id="bt_date" name="birthday" autocomplete="off" class="layui-input" value="<?php echo $user['birthday']; ?>" >
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -95,7 +96,7 @@
 			</div>
 		</form>
 	</div>
-	<script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
+	<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
 
 	<!-- <script>
 		layui.extend({

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\product\product_guige.html";i:1533543440;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\product\product_guige.html";i:1533879248;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="/static/static/css/font.css">
     <link rel="stylesheet" href="/static/static/css/weadmin.css">
     <link rel="stylesheet" href="/static/static/css/bootstrap.min.css">
-    <script src="/static/static/js/admin.js" type="text/javascript" ></script>
-
-
 </head>
 
 <body>

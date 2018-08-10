@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\index\index.html";i:1533720537;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\index\index.html";i:1533886153;}*/ ?>
 <!doctype html>
 <html lang="en">
 
@@ -140,6 +140,12 @@
 							</a>
 						</li>
 						<li>
+							<a _href="<?php echo url('admin/User/exam_list'); ?>">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>审核列表</cite>
+							</a>
+						</li>
+						<li>
 							<a _href="<?php echo url('admin/User/member_grade'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>会员等级</cite>
@@ -209,25 +215,25 @@
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a _href="./pages/admin/admin_list.html">
+							<a _href="<?php echo url('admin/admin/admin_list'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>管理员列表</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/admin/admin_role.html">
+							<a _href="<?php echo url('admin/admin/admin_role'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>角色管理</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/admin/admin_cate.html">
+							<a _href="<?php echo url('admin/admin/admin_cate'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>权限分类</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/admin/admin_rule.html">
+							<a _href="<?php echo url('admin/admin/admin_rule'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>权限管理</cite>
 							</a>

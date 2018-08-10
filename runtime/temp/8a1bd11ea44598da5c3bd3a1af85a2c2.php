@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_rule.html";i:1533885926;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -7,8 +8,8 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel="stylesheet" href="__STATIC__/static/css/font.css">
-	<link rel="stylesheet" href="__STATIC__/static/css/weadmin.css">
+	<link rel="stylesheet" href="/static/static/css/font.css">
+	<link rel="stylesheet" href="/static/static/css/weadmin.css">
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -102,8 +103,8 @@
 			</div>
 		</div>
 	</div>
-	<script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
-	<script src="__STATIC__/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+	<script src="/static/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>

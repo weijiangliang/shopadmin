@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\user\member_list.html";i:1533804163;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"E:\shop\public/../application/admin\view\user\exam_list.html";i:1533808636;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +33,7 @@
 		</div> -->
 		<div class="weadmin-body">
 			<div class="layui-row">
-				<form class="layui-form layui-col-md12 we-search" action="<?php echo url('admin/User/member_list'); ?>" method="post">
+				<form class="layui-form layui-col-md12 we-search" action="<?php echo url('admin/User/exam_list'); ?>" method="post">
 					会员搜索：
 					<div class="layui-inline">
 						<input type="text" name="user_id" placeholder="请输入会员ID" autocomplete="off" class="layui-input">
@@ -46,47 +46,35 @@
 			</div>
 			<table class="layui-table" id="memberList">
 				<thead>
-				
 					<tr>
 						<th>
 							<div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
 						</th>
-						<th>会员ID</th>
+						<th>认证ID</th>
 						<th>用户ID</th>
-						<th>性别</th>
-						<th>手机</th>
-						<th>邮箱</th>
-						<th>地址</th>
-						<th>申请为会员时间</th>
+						<th>真实姓名</th>
+						<th>身份证号</th>
+						<th>身份证手持照片</th>
 						<th>状态</th>
-						<th>冻结</th>
 						<th>操作</th>
 					</tr>
 					
 				</thead>
 				<tbody>
-				<?php if(is_array($user) || $user instanceof \think\Collection || $user instanceof \think\Paginator): if( count($user)==0 ) : echo "" ;else: foreach($user as $key=>$v): ?>
+				<?php if(is_array($auth) || $auth instanceof \think\Collection || $auth instanceof \think\Paginator): if( count($auth)==0 ) : echo "" ;else: foreach($auth as $key=>$v): ?>
 					<tr data-id="1">
 						<td>
 							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="1"><i class="layui-icon">&#xe605;</i></div>
 						</td>
 						<td><?php echo $v['id']; ?></td>
 						<td><?php echo $v['user_id']; ?></td>
-						<td><?php echo $v['sex']; ?></td>
-						<td><?php echo $v['phone']; ?></td>
-						<td><?php echo $v['wx_openid']; ?></td>
-						<td><?php echo $v['privince_id']; ?></td>
-						<td><?php echo $v['add_time']; ?></td>
+						<td><?php echo $v['real_name']; ?></td>
+						<td><?php echo $v['cardno']; ?></td>
+						<td><img src="<?php echo $v['auth_img']; ?>" title="身份证"> </td>
+						<td><a href="<?php echo url('admin/User/exam_list_add'); ?>?id=<?php echo $v['id']; ?>" style="color:blue"> <?php echo exam_status($v['auth_status']); ?></a></td>
 						<td class="td-status">
-							<span class="layui-btn layui-btn-normal layui-btn-xs"><?php echo auth_status($v['auth_status']); ?></span></td>
-							<td class="td-manage">
-							<a title="编辑"  href="<?php echo url('admin/user/user_status'); ?>?id=<?php echo $v['id']; ?>&user_status=<?php echo $v['user_status']; ?>">
-								<i class="layui-icon">&#xe642;</i><?php echo user_status($v['user_status']); ?>
-							</a>	
-						</td>
-						<td class="td-manage">
-							<a title="编辑"  href="<?php echo url('admin/user/member_edit'); ?>?id=<?php echo $v['id']; ?>">
-								<i class="layui-icon">&#xe642;</i>编辑
+							<a title="编辑"  href="<?php echo url('admin/user/user_status'); ?>?id=<?php echo $v['id']; ?>&user_status=<?php echo $v['id']; ?>">
+								<i class="layui-icon">&#xe642;</i>
 							</a>
 							<a title="删除" href="<?php echo url('admin/user/member_del'); ?>?id=<?php echo $v['id']; ?>">
 								<i class="layui-icon">&#xe640;</i>删除

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"E:\shop\public/../application/admin\view\user\member_account.html";i:1533708380;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"E:\shop\public/../application/admin\view\user\member_account.html";i:1533878709;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -8,8 +8,8 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="/static/static/css/font.css">
-    <link rel="stylesheet" href="/static/static/css/weadmin.css">
+<!--     <link rel="stylesheet" href="/static/static/css/font.css"> -->
+<!--     <link rel="stylesheet" href="/static/static/css/weadmin.css"> -->
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -45,12 +45,15 @@
             </div>
              <div class="layui-form-item">
                 <label for="vip_id" class="layui-form-label">
-                    <span class="we-red">*</span>充值金额
+                    <span class="we-red">*</span>充值类型
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="vip_id" name="num" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="请输入充值金额">
+                   <input type="radio" name="type" value="1" checked="1">增加
+                   <input type="radio" name="type" value="2" >扣除
+                   <input type="text" id="vip_id" name="num" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="请输入充值金额">
                 </div>
-            </div>
+     
+
             <th class="my_vip_list"></th>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
@@ -67,11 +70,11 @@
             </div>
         </form>
     </div>
-    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+  <!--   <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
     <script>
         var select = 'dd[lay-value=' + data.schoolId + ']';
         $('#edit_exam_school').siblings("div.layui-form-select").find('dl').find(select).click();
-    </script>
+    </script> -->
 
     <!-- <script>
 		layui.extend({

@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_brand_add.html";i:1533349213;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -7,9 +8,9 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="__STATIC__/static/css/font.css">
-    <link rel="stylesheet" href="__STATIC__/static/css/weadmin.css">
-    <link rel="stylesheet" href="__STATIC__/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/static/css/font.css">
+    <link rel="stylesheet" href="/static/static/css/weadmin.css">
+    <link rel="stylesheet" href="/static/static/css/bootstrap.min.css">
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -23,7 +24,7 @@
         <span>品牌</span>
         <i> 商品品牌添加和管理</i>
     </div>
-    <form action="{:url('admin/product/product_brand_add')}" enctype="multipart/form-data" method="post">
+    <form action="<?php echo url('admin/product/product_brand_add'); ?>" enctype="multipart/form-data" method="post">
         <div class="inp_box">
             <span >品牌名称：</span>
             <input type="text" name="brand_name" class="inp_list">
@@ -39,9 +40,9 @@
         <div class="inp_box">
             <span>所属分类：</span>
             <select name="parent_cate_id" class="sel" id="parent_id" > 
-              {foreach name="cate" item="v"}
-            <option value="{$v['id']}" >{$v['name']}</option>
-            {/foreach}
+              <?php if(is_array($cate) || $cate instanceof \think\Collection || $cate instanceof \think\Paginator): if( count($cate)==0 ) : echo "" ;else: foreach($cate as $key=>$v): ?>
+            <option value="<?php echo $v['id']; ?>" ><?php echo $v['name']; ?></option>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
             </select>
             <select name="cate_id" class="sel" id="cateson_id"> 
             <option value="3">111</option>
@@ -145,8 +146,7 @@
         margin-right: 4px;
     }
 </style>
-<script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
-<script type="text/javascript" src="__STATIC__/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/static/js/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
    $("#parent_id").change(function(){

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\order\order_list.html";i:1533694796;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\order\order_list.html";i:1533878616;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -11,12 +11,7 @@
 	<link rel="stylesheet" href="/static/static/css/font.css">
 	<link rel="stylesheet" href="/static/static/css/weadmin.css">
 	<link rel="stylesheet" href="/static/static/css/bootstrap.min.css">
-	<script src="__STATUS__/lib/layui/layui.js" charset="utf-8"></script>
-	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-	<!--[if lt IE 9]>
-	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-	    <![endif]-->
+	<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -92,7 +87,7 @@
 	<?php echo $order->render(); ?>
 	<script>
 		layui.extend({
-			admin: '{/}../../static/js/admin'
+			admin: '/static/static/js/admin'
 		});
 		layui.use(['laydate', 'jquery', 'admin'], function () {
 			var laydate = layui.laydate,

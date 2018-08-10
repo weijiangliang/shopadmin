@@ -32,16 +32,10 @@
 		</div> -->
 		<div class="weadmin-body">
 			<div class="layui-row">
-				<form class="layui-form layui-col-md12 we-search">
+				<form class="layui-form layui-col-md12 we-search" action="{:url('admin/User/member_list')}" method="post">
 					会员搜索：
 					<div class="layui-inline">
-						<input class="layui-input" placeholder="加入会员开始时间" name="start" id="start">
-					</div>
-					<div class="layui-inline">
-						<input class="layui-input" placeholder="加入会员结束时间" name="end" id="end">
-					</div>
-					<div class="layui-inline">
-						<input type="text" name="vip_name" placeholder="请输入会员名" autocomplete="off" class="layui-input">
+						<input type="text" name="user_id" placeholder="请输入会员ID" autocomplete="off" class="layui-input">
 					</div>
 					<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
 				</form>
@@ -57,13 +51,14 @@
 							<div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
 						</th>
 						<th>会员ID</th>
-						<th>会员名</th>
+						<th>用户ID</th>
 						<th>性别</th>
 						<th>手机</th>
 						<th>邮箱</th>
 						<th>地址</th>
 						<th>申请为会员时间</th>
 						<th>状态</th>
+						<th>冻结</th>
 						<th>操作</th>
 					</tr>
 					
@@ -83,13 +78,14 @@
 						<td>{$v['add_time']}</td>
 						<td class="td-status">
 							<span class="layui-btn layui-btn-normal layui-btn-xs">{:auth_status($v['auth_status'])}</span></td>
-						<td class="td-manage">
-							
-							<a title="编辑"  href="{:url('admin/user/member_edit')}?id={$v['id']}">
-								<i class="layui-icon">&#xe642;</i>编辑
-							</a>
+							<td class="td-manage">
 							<a title="编辑"  href="{:url('admin/user/user_status')}?id={$v['id']}&user_status={$v['user_status']}">
 								<i class="layui-icon">&#xe642;</i>{:user_status($v['user_status'])}
+							</a>	
+						</td>
+						<td class="td-manage">
+							<a title="编辑"  href="{:url('admin/user/member_edit')}?id={$v['id']}">
+								<i class="layui-icon">&#xe642;</i>编辑
 							</a>
 							<a title="删除" href="{:url('admin/user/member_del')}?id={$v['id']}">
 								<i class="layui-icon">&#xe640;</i>删除

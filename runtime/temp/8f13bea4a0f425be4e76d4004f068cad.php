@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\order\order_view.html";i:1533870079;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -7,9 +8,9 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="__STATIC__/static/css/font.css">
-    <link rel="stylesheet" href="__STATIC__/static/css/weadmin.css">
-    <script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/static/css/font.css">
+    <link rel="stylesheet" href="/static/static/css/weadmin.css">
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -26,7 +27,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="order_username" name="order_username" required="" lay-verify="required" autocomplete="off" class="layui-input"
-                        value="{$order_info['user_id']}" disabled="disabled">
+                        value="<?php echo $order_info['user_id']; ?>" disabled="disabled">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -35,7 +36,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="order_id" name="order_id" required="" lay-verify="required" autocomplete="off" class="layui-input"
-                        value="{$order_info['parent_sn']}" disabled="disabled">
+                        value="<?php echo $order_info['parent_sn']; ?>" disabled="disabled">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -44,7 +45,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="order_shr" name="order_shr" required="" lay-verify="required" autocomplete="off" class="layui-input"
-                        value="{$order['address_name']}" disabled="disabled">
+                        value="<?php echo $order['address_name']; ?>" disabled="disabled">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -52,7 +53,7 @@
                     <span class="we-red">*</span>手机
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="order_phone" name="order_phone" required="" lay-verify="phone" autocomplete="off" class="layui-input" value="{$order['address_phone']}" disabled="disabled">
+                    <input type="text" id="order_phone" name="order_phone" required="" lay-verify="phone" autocomplete="off" class="layui-input" value="<?php echo $order['address_phone']; ?>" disabled="disabled">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -61,7 +62,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="order_address" name="order_address" required="" lay-verify="required" autocomplete="off" class="layui-input"
-                        value="{$order['address_mes']}" disabled="disabled">
+                        value="<?php echo $order['address_mes']; ?>" disabled="disabled">
                 </div>
             </div>
             <!-- <div class="layui-form-item">
@@ -77,14 +78,14 @@
                     <span class="we-red">*</span>支付方式
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="order_pay" name="order_pay" required="" lay-verify="required" autocomplete="off" class="layui-input"   value="{$order['pay_name']}" disabled="disabled">
+                    <input type="text" id="order_pay" name="order_pay" required="" lay-verify="required" autocomplete="off" class="layui-input"   value="<?php echo $order['pay_name']; ?>" disabled="disabled">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="order_fptt" class="layui-form-label">
                     <span class="we-red">*</span>发票抬头</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="order_fptt" name="order_fptt" required="" lay-verify="email" autocomplete="off" class="layui-input" value="{$order['invoice_title']}" disabled="disabled">
+                    <input type="text" id="order_fptt" name="order_fptt" required="" lay-verify="email" autocomplete="off" class="layui-input" value="<?php echo $order['invoice_title']; ?>" disabled="disabled">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="we-red">*</span>
@@ -109,18 +110,18 @@
 
                         </thead>
                         <tbody>
-                        {foreach name="order_goods" item="v"}
+                        <?php if(is_array($order_goods) || $order_goods instanceof \think\Collection || $order_goods instanceof \think\Paginator): if( count($order_goods)==0 ) : echo "" ;else: foreach($order_goods as $key=>$v): ?>
                             <tr>
-                                <td>{$v['good_id']}</td>
-                                <td>{$v['good_name']}</td>
-                                <td>{$v['final_price']}</td>
-                                <td>{$v['good_num']}</td>
+                                <td><?php echo $v['good_id']; ?></td>
+                                <td><?php echo $v['good_name']; ?></td>
+                                <td><?php echo $v['final_price']; ?></td>
+                                <td><?php echo $v['good_num']; ?></td>
                                 
                                 <td>
-                                    <a style="cursor: pointer; color: blue;" onclick="removeTr({$v['id']})">删除</a>
+                                    <a style="cursor: pointer; color: blue;" onclick="removeTr(<?php echo $v['id']; ?>)">删除</a>
                                 </td>
                             </tr>
-                          {/foreach}
+                          <?php endforeach; endif; else: echo "" ;endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -136,7 +137,7 @@
             </div>
         </form>
     </div>
-    <script type="text/javascript" src="__STATIC__/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/static/js/jquery.js"></script>
     <script>
 
         layui.extend({
@@ -216,7 +217,7 @@
             var con;
              con = confirm("确定要删除吗?");
        if(con){
-        $.post("{:url('admin/Order/ajaxorder_delgoods')}",{id:id},function(data){
+        $.post("<?php echo url('admin/Order/ajaxorder_delgoods'); ?>",{id:id},function(data){
             if(data.state==2){
                 alert(data.msg);
             }
