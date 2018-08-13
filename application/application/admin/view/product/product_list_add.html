@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>多啦优选后台管理系统-商品添加</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__STATIC__/static/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/static/css/weadmin.css">
+    <link rel="stylesheet" href="__STATIC__/static/css/proAdd.css">
+    <link rel="stylesheet" href="__STATIC__/static/css/bootstrap.min.css">
+    <script src="__STATIC__/static/js/jquery.js"></script>
+</head>
+
+<body>
+    <div class="proAdd">
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+            <li><a href="{:url('admin/product/product_list_add')}">商品基本信息</a></li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-card">
+                        <div class="layui-card-header" style="color:darkcyan;">
+                            操作提示
+                        </div>
+                        <div class="layui-card-body">
+                            请添加商品基本信息
+                        </div>
+                    </div>
+                    <form action="{:url('admin/product/product_list_add')}" enctype="multipart/form-data" method="post">
+                        <div class="layui-form-item">
+                            <label for="product_id" class="layui-form-label">
+                                <span class="we-red">*</span>商品名称
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_id" name="product_name" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="product_name" class="layui-form-label">
+                                <span class="we-red">*</span>商品简介
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_name" name="good_remark" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="product_num" class="layui-form-label">
+                                <span class="we-red">*</span>商品货号
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_num" name="good_sn" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                            <span class="layui-form-mid layui-word-aux">
+                                如果不填，自动生成
+                            </span>
+                        </div>
+               <!--          <div class="layui-form-item">
+                            <label for="product_ownCate" class="layui-form-label">
+                                <span class="we-red">*</span>SPU
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_ownCate" name="product_ownCate" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="product_ownCate" class="layui-form-label">
+                                <span class="we-red">*</span>SKU
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_ownCate" name="product_ownCate" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div> -->
+                         <div class="layui-form-item">
+                            <label for="product_ownCate" class="layui-form-label" >
+                                <span class="we-red">*</span>商品分类
+                            </label>
+                            <div class="layui-input-inline">
+                                <select name="cate_1" id="cate_one_id">
+                                {foreach name='cate' item="v"}
+                                    <option value="{$v['id']}">{$v['name']}</option>
+                                {/foreach}
+                                </select>
+                                <select name="cate_2" id="cate_two_id">
+                                    <option value="0">请选择商品分类</option>
+                                </select>
+                                <select name="cate_3" id="cate_three_id">
+                                    <option value="0">请选择商品分类</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <script type="text/javascript">
+                     $(function(){
+                           $("#cate_one_id").change(function(){
+
+                              $("#cate_two_id").html("");
+                              $("#cate_three_id").html("");
+                              //var option = $("<option value='11'>333333</option>");
+                              // $("#cateson_id").append(option);
+                             var parent_id = $('#cate_one_id option:selected').val();
+                                     $.post('ajax_productcate',{parent_id:parent_id},function(data){
+                                        console.log(data);
+                                         if(data.statu==1&&data.str!=''){
+                                            var option = $(data.str);
+                                               $("#cate_two_id").append(option); 
+                                                }else{
+                                                    alert(data.msg);
+                                                }
+                                     });
+                         });
+                           //这是进来默认的触发
+                        var parent_id = $('#cate_one_id option:selected').val();
+                           var parent_id = $('#cate_one_id option:selected').val();
+                                     $.post('ajax_productcate',{parent_id:parent_id},function(data){
+                                        console.log(data);
+                                           if(data.statu==1){
+                                            var option = $(data.str);
+                                               $("#cate_two_id").append(option); 
+                                                }else{
+                                                    alert(data.msg);
+                                                }
+                                            });
+
+                  $("#cate_two_id").change(function(){
+                    
+                              $("#cate_three_id").html("");
+                             var parent_id = $('#cate_two_id option:selected').val();
+                             if(parent_id!=''){
+                                $.post('ajax_productcate',{parent_id:parent_id},function(data){
+                                        console.log(data);
+                                         if(data.statu==1&&data.str!=''){
+                                            var option = $(data.str);
+                                               $("#cate_three_id").append(option); 
+                                                }else{
+                                                    alert(data.msg);
+                                                }
+                                     });
+                            }else{
+                                alert('请选择父级分类');
+                            }
+                                     
+                         });
+
+
+
+
+                       });
+                        </script>
+                        <div class="layui-form-item">
+                            <label for="product_ownCate" class="layui-form-label">
+                                <span class="we-red">*</span>商品品牌
+                            </label>
+                            <div class="layui-input-inline">
+                                <select name="brand_id" id="">
+                                {foreach name='brand' item="vol"}
+                                    <option value="{$vol['id']}">{$vol['brand_name']}</option>
+                               {/foreach}
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="product_ownCate" class="layui-form-label">
+                                <span class="we-red">*</span>商品供应商
+                            </label>
+                            <div class="layui-input-inline">
+                                <select name="suppfliers" id="">
+                                {foreach name="suppfilers" item='vl'}
+                                    <option value="{$vl['suppliers_id']}">{$vl['suppliers_name']}</option>
+                                {/foreach}
+                                    
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="shoop_price" class="layui-form-label">
+                                <span class="we-red">*</span>本店售价
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_price" name="product_price" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>市场价
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_price" name="market_price" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>成本价
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_price" name="cost_price" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+          <!--               <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>佣金
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_price" name="product_price" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div> -->
+                        <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>图片上传
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="file" id="product_price" name="good_thumb" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                            <span class="layui-form-mid layui-word-aux">
+                                请上传图片格式文件
+                            </span>
+                        </div>
+                       <!--  <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>视频上传
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="file" id="product_price" name="product_price" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                            <span class="layui-form-mid layui-word-aux">
+                                请上传视频格式文件
+                            </span>
+                        </div> -->
+                        <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>商品重量
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_price" name="weight" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                            <span class="layui-form-mid layui-word-aux">
+                                务必设置商品重量，用于计算物流费，以克为单位
+                            </span>
+                        </div>
+                        <!-- <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>商品体积
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_price" name="product_price" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                            <span class="layui-form-mid layui-word-aux">
+                                务必设置商品体积，用于计算物流费，以立方米为单位
+                            </span>
+                        </div> -->
+                        <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>是否包邮
+                            </label>
+                            <input type="radio" name="free" value="1">是 <input type="radio" name="free" value="2">否
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>总库存
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_price" name="store_num" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                      <!--   <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>商品关键字
+                            </label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="product_price" name="product_price" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                            </div>
+                            <span class="layui-form-mid layui-word-aux">
+                                多个关键字，用空格隔开
+                            </span>
+                        </div> -->
+                        <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>是否虚拟商品
+                            </label>
+                           <input type="radio" name="real" value="1">是 <input type="radio" name="real" value="2">否
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="product_price" class="layui-form-label">
+                                <span class="we-red">*</span>商品详情描述
+                            </label>
+                            <div class="layui-input-inline">
+                                <textarea id="demo" style="display: none;" name="desc"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="L_repass" class="layui-form-label">
+                            </label>
+                            <input type="submit" name="">
+                           <!--  <button class="layui-btn" lay-filter="add" lay-submit="">确认添加</button> -->
+                        </div>
+                    </form>
+             
+
+                </div>
+            </div>
+        </div>
+</body>
+<script src="__STATIC__/lib/layui/layui.js"></script>
+
+<!-- <script>
+    // //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    // layui.use('element', function () {
+    //     var element = layui.element;
+
+    //     //…
+    // });
+    // layui.use('layedit', function () {
+    //     var layedit = layui.layedit;
+    //     layedit.build('demo'); //建立编辑器
+    // });
+    $(function(){
+   $("#cate_one_id").change(function(){
+      $("#cate_two_id").html("");
+      $("#cate_three_id").html("");
+      //var option = $("<option value='11'>333333</option>");
+      // $("#cateson_id").append(option);
+     var parent_id = $('#cate_one_id option:selected').val();
+     $.post('ajax_productlist',{parent_id:parent_id},function(data){
+        $.each(data, function (index,obj) {
+           var option = $("<option value='"+obj.id+"'>"+obj.name+"</option>");
+              $("#cateson_id").append(option);  
+       });
+});
+});
+
+});
+
+</script> -->
+<style>
+    .layui-form-item .layui-input-inline:nth-of-type(1) {
+        width: 700px !important;
+    }
+    
+    .layui-form-item .layui-input-inline select {
+        width: 200px;
+        height: 38px !important;
+    }
+</style>
+</html>
