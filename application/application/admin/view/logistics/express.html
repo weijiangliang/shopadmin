@@ -37,7 +37,7 @@
                 <i class="layui-icon"></i>添加</button> -->
             <button class="layui-btn" onclick="WeAdminShow('新增快递类型','{:url(\"admin/Logistics/express_add\")}',800,600)">
                 <i class="layui-icon"></i>新增快递类型</button>
-            <span class="fr" style="line-height:40px">共有数据：88 条</span>
+            <span class="fr" style="line-height:40px">共有数据：{$count}条</span>
         </div>
         <table class="layui-table" id="memberList">
             <thead>
@@ -71,16 +71,16 @@
                     <td><img src="__UPLOAD__/{$v['shipping_logo']}"> </td>
                     <td class="td-status">
                     {if condition="$v['is_open']==1"}
-                        <span class="layui-btn layui-btn-normal layui-btn-xs" onclick="is_open({$v['shipping_id']})">关闭</span>
+                        <span class="layui-btn layui-btn-normal layui-btn-xs" onclick="is_open('{$v[\'shipping_id\']}','{$v[\'is_open\']}')">关闭</span>
                         {else}
-                        <span class="layui-btn layui-btn-normal layui-btn-xs" onclick="is_open({$v['shipping_id']})">启用
+                        <span class="layui-btn layui-btn-normal layui-btn-xs" onclick="is_open('{$v[\'shipping_id\']}','{$v[\'is_open\']}')">启用
                         </span>
                         {/if}
                     
                     </td>
                     <td class="td-manage">
                        
-                        <a title="修改运费模板" onclick="WeAdminEdit('修改运费模板','{:url(\"admin/Logistics/express_edit\")}?shipping_id={$v[\'shipping_id\']}',800, 600)" href="javascript:;">
+                        <a title="修改运费模板" onclick="WeAdminEdit('修改运费模板','{:url(\"admin/Logistics/express_edit\")}?shipping_id={$v[\'shipping_id\']}',600, 800)" href="javascript:;">
                             <i class="layui-icon">&#xe642;</i>修改
                         </a>
                        
@@ -107,14 +107,19 @@
             alert(data.msg);
             window.location.reload();
         }
-
     });
  }
 
-function is_open(){
+function is_open(shipping_id,is_open){
+ $.post('ajaxexpress_stautus',{shipping_id:shipping_id,is_open:is_open},function(data){
+    if(data.status==2){
+        }else{
+            //alert(data.msg);
+            window.location.reload();
+        }
+ });
 
 }
-
     </script>
 </body>
 

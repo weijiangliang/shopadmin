@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"E:\shop\public/../application/admin\view\logistics\express.html";i:1534151197;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"E:\shop\public/../application/admin\view\logistics\express.html";i:1534241177;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -38,7 +38,7 @@
                 <i class="layui-icon"></i>添加</button> -->
             <button class="layui-btn" onclick="WeAdminShow('新增快递类型','<?php echo url("admin/Logistics/express_add"); ?>',800,600)">
                 <i class="layui-icon"></i>新增快递类型</button>
-            <span class="fr" style="line-height:40px">共有数据：88 条</span>
+            <span class="fr" style="line-height:40px">共有数据：<?php echo $count; ?>条</span>
         </div>
         <table class="layui-table" id="memberList">
             <thead>
@@ -72,16 +72,16 @@
                     <td><img src="/uploads/<?php echo $v['shipping_logo']; ?>"> </td>
                     <td class="td-status">
                     <?php if($v['is_open']==1): ?>
-                        <span class="layui-btn layui-btn-normal layui-btn-xs" onclick="is_open(<?php echo $v['shipping_id']; ?>)">关闭</span>
+                        <span class="layui-btn layui-btn-normal layui-btn-xs" onclick="is_open('<?php echo $v['shipping_id']; ?>','<?php echo $v['is_open']; ?>')">关闭</span>
                         <?php else: ?>
-                        <span class="layui-btn layui-btn-normal layui-btn-xs" onclick="is_open(<?php echo $v['shipping_id']; ?>)">启用
+                        <span class="layui-btn layui-btn-normal layui-btn-xs" onclick="is_open('<?php echo $v['shipping_id']; ?>','<?php echo $v['is_open']; ?>')">启用
                         </span>
                         <?php endif; ?>
                     
                     </td>
                     <td class="td-manage">
                        
-                        <a title="修改运费模板" onclick="WeAdminEdit('修改运费模板','<?php echo url("admin/Logistics/express_edit"); ?>?shipping_id=<?php echo $v['shipping_id']; ?>',800, 600)" href="javascript:;">
+                        <a title="修改运费模板" onclick="WeAdminEdit('修改运费模板','<?php echo url("admin/Logistics/express_edit"); ?>?shipping_id=<?php echo $v['shipping_id']; ?>',600, 800)" href="javascript:;">
                             <i class="layui-icon">&#xe642;</i>修改
                         </a>
                        
@@ -108,14 +108,19 @@
             alert(data.msg);
             window.location.reload();
         }
-
     });
  }
 
-function is_open(){
+function is_open(shipping_id,is_open){
+ $.post('ajaxexpress_stautus',{shipping_id:shipping_id,is_open:is_open},function(data){
+    if(data.status==2){
+        }else{
+            //alert(data.msg);
+            window.location.reload();
+        }
+ });
 
 }
-
     </script>
 </body>
 

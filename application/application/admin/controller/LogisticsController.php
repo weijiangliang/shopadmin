@@ -15,8 +15,10 @@ class LogisticsController extends Controller
 		}
     //快递列表
 	public function express(){
-		$express = db('shipping')->paginate(10);
+    $express = db('shipping')->paginate(10);
+		$count = db('shipping')->count();
 		return $this->fetch('express',[
+      'count'=>$count,
 			'express'=>$express
 			]);
 	  }
@@ -164,7 +166,37 @@ public function upload($file){
     }
 }
 
+//快递状态
+public function ajaxexpress_stautus(){
 
+  $shipping_id = trim(input('shipping_id'));
+  $is_open = trim(input('is_open'));
+  if(!$shipping_id||!$is_open){
+     $callback = [
+      'status' => 2,
+     'msg' => '修改失败'
+      ];
+return json($callback);
+  }
+  if($is_open==1){
+    $data['is_open']=2;
+  }elseif($is_open==2) {
+    $data['is_open']=1;
+  }
+$shipping = db('shipping')->where('shipping_id',$shipping_id)->update($data);
+    if(!$shipping){
+       $callback = [
+      'status' => 2,
+      'msg' => '修改失败'
+       ];
+       return json($callback);
+    }else{
+       $callback = [
+      'status' => 1,
+      'msg' => '修改成功'
+      ];
+      return json($callback);
+    }
 
-
+}
 }

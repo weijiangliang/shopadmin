@@ -18,7 +18,7 @@
 
 	<body>
 		<div class="weadmin-body">
-			<form action="" method="post" class="layui-form layui-form-pane">
+			<form action="" method="post" class="layui-form layui-form-pane" action="{:url('admin/admin/admin_role_add')}" method="post">
 				<div class="layui-form-item">
 					<label for="role_name" class="layui-form-label">
                         <span class="we-red">*</span>角色名
@@ -27,7 +27,7 @@
 						<input type="text" id="role_name" name="role_name" required="" lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<div class="layui-form-item layui-form-text">
+				<!-- <div class="layui-form-item layui-form-text">
 					<label class="layui-form-label">
                         拥有权限
                     </label>
@@ -50,13 +50,13 @@
 							</tr>
 													</tbody>
 					</table>
-				</div>
+				</div> -->
 				<div class="layui-form-item layui-form-text">
 					<label for="user_desc" class="layui-form-label">
                         描述
                     </label>
 					<div class="layui-input-block">
-						<textarea placeholder="请输入内容" id="user_desc" name="user_desc" class="layui-textarea"></textarea>
+						<textarea placeholder="请输入内容" id="user_desc" name="role_desc" class="layui-textarea"></textarea>
 					</div>
 				</div>
 				<div class="layui-form-item">
@@ -65,7 +65,7 @@
 			</form>
 		</div>
 		<script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript">
+<!-- 		<script type="text/javascript">
 			layui.extend({
 				admin: '/static/static/js/admin'
 			});
@@ -90,7 +90,7 @@
 				});
 
 			});
-		</script>
+		</script> -->
 	</body>
 
 </html>

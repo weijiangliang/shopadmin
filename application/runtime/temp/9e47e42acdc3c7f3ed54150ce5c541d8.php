@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_role.html";i:1533885917;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_role.html";i:1534236913;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -44,9 +44,8 @@
 				</form>
 			</div>
 			<div class="weadmin-block">
-				<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-				<button class="layui-btn" onclick="WeAdminShow('添加角色','admin_role_add.html')"><i class="layui-icon"></i>添加</button>
-				<span class="fr" style="line-height:40px">共有数据：88 条</span>
+				<button class="layui-btn" onclick="WeAdminShow('添加角色','admin_role_add.html')"><i class="layui-icon"></i>添加</button>
+				<span class="fr" style="line-height:40px">共有数据：<?php echo $count; ?>条</span>
 			</div>
 			<table class="layui-table">
 				<thead>
@@ -55,50 +54,59 @@
 							<div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
 						</th>
 						<th>ID</th>
-						<th>角色名</th>
-						<th>拥有权限规则</th>
-						<th>描述</th>
-						<th>状态</th>
+						<th>角色名称</th>
+						<th>权限菜单</th>
+						<th>创建时间</th>
+						<th>更新时间</th>
 						<th>操作</th>
 				</thead>
 				<tbody>
+				<?php if(is_array($role) || $role instanceof \think\Collection || $role instanceof \think\Paginator): if( count($role)==0 ) : echo "" ;else: foreach($role as $key=>$v): ?>
 					<tr>
 						<td>
 							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
 						</td>
-						<td>1</td>
-						<td>超级管理员</td>
-						<td>会员列表，问题列表</td>
-						<td>所有权限均可启用</td>
-						<td class="td-status">
-							<span class="layui-btn layui-btn-normal layui-btn-xs">已启用</span></td>
+						<td><?php echo $v['role_id']; ?></td>
+						<td><?php echo $v['role_name']; ?></td>
+						<td><?php echo $v['role_permissions']; ?></td>
+						<td><?php echo $v['role_create_time']; ?></td>
+						<td><?php echo $v['role_update_time']; ?></td>
 						<td class="td-manage">
-							<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
-								<i class="layui-icon">&#xe601;</i>
+							<a title="编辑" onclick="WeAdminShow('编辑','admin_role_edit.html?role_id=<?php echo $v['role_id']; ?>')" href="javascript:;">
+								<i class="layui-icon">&#xe654;</i>编辑
 							</a>
-							<a title="编辑" onclick="WeAdminShow('添加角色','admin_role_add.html')" href="javascript:;">
-								<i class="layui-icon">&#xe654;</i>
+							<a title="分配权限" onclick="WeAdminShow('分配权限','admin_role_rule.html')" href="javascript:;">
+								<i class="layui-icon">&#xe654;</i>分配权限
 							</a>
-							<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-								<i class="layui-icon">&#xe640;</i>
+							<a title="删除" onclick="role_del('<?php echo $v['role_id']; ?>')" href="javascript:;">
+								<i class="layui-icon">&#xe640;</i>删除
 							</a>
 						</td>
 					</tr>
+					<?php endforeach; endif; else: echo "" ;endif; ?>
 				</tbody>
 			</table>
-			<div class="page">
-				<div>
-					<a class="prev" href="">&lt;&lt;</a>
-					<a class="num" href="">1</a>
-					<span class="current">2</span>
-					<a class="num" href="">3</a>
-					<a class="num" href="">...</a>
-					<a class="next" href="">&gt;&gt;</a>
-				</div>
-			</div>
-		</div>
+			<?php echo $role->render(); ?>
 		<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
 		<script src="/static/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/static/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+	function role_del(role_id){
+     var returnVal = window.confirm("确定删除吗");
+        if(!returnVal) {
+           alert('谢谢信任');
+		}else{
+       $.post('admin_role_del',{role_id:role_id},function(data){
+           if(data.status==1){
+			alert(data.msg);
+			window.location.reload();
+		}else{
+			alert(data.msg);
+		}
+       });
+		}
+}
+		</script>
 	</body>
 
 </html>

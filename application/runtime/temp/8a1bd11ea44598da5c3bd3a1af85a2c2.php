@@ -1,10 +1,10 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_rule.html";i:1533885926;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_rule.html";i:1534239150;}*/ ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="UTF-8">
-	<title>XXXX后台管理系统-权限管理</title>
+	<title>多啦优选后台管理系统-权限管理</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -65,22 +65,29 @@
 						</div>
 					</th>
 					<th>ID</th>
-					<th>权限规则</th>
 					<th>权限名称</th>
-					<th>所属分类</th>
+					<th>模块</th>
+					<th>控制器</th>
+					<th>方法</th>
+					<th>创建于</th>
+					<th>状态</th>
 					<th>操作</th>
 			</thead>
 			<tbody>
+			<?php if(is_array($auth) || $auth instanceof \think\Collection || $auth instanceof \think\Paginator): if( count($auth)==0 ) : echo "" ;else: foreach($auth as $key=>$v): ?> 
 				<tr>
 					<td>
 						<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'>
 							<i class="layui-icon">&#xe605;</i>
 						</div>
 					</td>
-					<td>1</td>
-					<td>admin/user/userlist</td>
-					<td>会员列表</td>
-					<td>会员</td>
+					<td><?php echo $v['menu_id']; ?></td>
+					<td><?php echo $v['menu_name']; ?></td>
+					<td><?php echo $v['menu_module']; ?></td>
+					<td><?php echo $v['menu_controller']; ?></td>
+					<td><?php echo $v['menu_function']; ?></td>
+					<td><?php echo $v['menu_create_time']; ?></td>
+					<td><?php echo $v['menu_operation']; ?></td>
 					<td class="td-manage">
 						<a title="编辑" onclick="WeAdminShow('添加权限规则','./admin_rule_add.html')" href="javascript:;">
 							<i class="layui-icon">&#xe654;</i>
@@ -90,19 +97,11 @@
 						</a>
 					</td>
 				</tr>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
 			</tbody>
 		</table>
-		<div class="page">
-			<div>
-				<a class="prev" href="">&lt;&lt;</a>
-				<a class="num" href="">1</a>
-				<span class="current">2</span>
-				<a class="num" href="">3</a>
-				<a class="num" href="">489</a>
-				<a class="next" href="">&gt;&gt;</a>
-			</div>
-		</div>
 	</div>
+	<?php echo $auth->render(); ?>
 	<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
 	<script src="/static/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
 </body>
