@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\admin\admin_editrole.html";i:1534227889;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\admin\admin_editrole.html";i:1534322469;}*/ ?>
 <!DOCTYPE html>
 <html>
   
@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="/static/static/css/font.css">
-<!-- 		<link rel="stylesheet" href="/static/static/css/weadmin.css"> -->
+		<link rel="stylesheet" href="/static/static/css/weadmin.css">
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -33,8 +33,7 @@
                   <span class="we-red">*</span><?php echo $v['role_name']; ?>
               </label>
               <div class="layui-input-inline">
-                  <input type="checkbox" id="username" name="username[]"  lay-verify="required"
-                  autocomplete="off" value="<?php echo $v['role_id']; ?>" class="layui-input" <?php if(is_array($role_id) || $role_id instanceof \think\Collection || $role_id instanceof \think\Paginator): if( count($role_id)==0 ) : echo "" ;else: foreach($role_id as $key=>$vol): if($v['role_id']==$vol): ?> checked="1" <?php endif; endforeach; endif; else: echo "" ;endif; ?> />
+                  <input type="checkbox"  name="username[]"   value="<?php echo $v['role_id']; ?>"  <?php if(is_array($role_id) || $role_id instanceof \think\Collection || $role_id instanceof \think\Paginator): if( count($role_id)==0 ) : echo "" ;else: foreach($role_id as $key=>$vol): if($v['role_id']==$vol): ?> checked="1" <?php endif; endforeach; endif; else: echo "" ;endif; ?> />
                   
               </div>
               </div>

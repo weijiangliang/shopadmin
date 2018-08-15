@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\index\index.html";i:1534140272;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\index\index.html";i:1534327489;}*/ ?>
 <!doctype html>
 <html lang="en">
 
@@ -205,12 +205,7 @@
 								<cite>物流快递</cite>
 							</a>
 						</li>
-						<li>
-							<a _href="<?php echo url('admin/Logistics/freight_template'); ?>">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>运费模板</cite>
-							</a>
-						</li>
+						
 					</ul>
 				</li>
 				<li>
@@ -232,12 +227,7 @@
 								<cite>角色管理</cite>
 							</a>
 						</li>
-						<li>
-							<a _href="<?php echo url('admin/admin/admin_cate'); ?>">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>权限分类</cite>
-							</a>
-						</li>
+						
 						<li>
 							<a _href="<?php echo url('admin/admin/admin_rule'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
@@ -254,13 +244,13 @@
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a _href="./pages/activity/activity_list.html">
+							<a _href="<?php echo url('admin/active/activity_list'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>活动列表</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/activity/gift_list.html">
+							<a _href="<?php echo url('admin/active/gift_list'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>礼包列表</cite>
 							</a>

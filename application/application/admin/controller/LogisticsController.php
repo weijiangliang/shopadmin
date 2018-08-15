@@ -5,7 +5,9 @@ use think\Controller;
 use think\Request;
 use think\Db;
 use think\Session;
-class LogisticsController extends Controller
+use app\admin\controller\AdminbaseController;
+
+class LogisticsController extends AdminbaseController
 {
     //列表
     public function freight_template()

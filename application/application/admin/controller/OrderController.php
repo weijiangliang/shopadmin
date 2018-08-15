@@ -5,7 +5,8 @@ use think\Controller;
 use think\Request;
 use think\Db;
 use think\Session;
-class OrderController extends Controller
+use app\admin\controller\AdminbaseController;
+class OrderController extends AdminbaseController
 {
 //会员列表
 public function order_list()

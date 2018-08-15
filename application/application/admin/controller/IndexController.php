@@ -2,7 +2,8 @@
 namespace app\admin\controller;
 use think\Controller;
 use app\admin\controller\CheckController;
-class IndexController extends Controller
+use app\admin\controller\AdminbaseController;
+class IndexController extends AdminbaseController
 {
     public function index()
     {

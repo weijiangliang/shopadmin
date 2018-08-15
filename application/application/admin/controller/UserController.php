@@ -1,11 +1,12 @@
 <?php
 namespace app\admin\controller;
 use app\admin\controller\CheckController;
+use app\admin\controller\AdminbaseController;
 use think\Controller;
 use think\Request;
 use think\Db;
 use think\Session;
-class UserController extends Controller
+class UserController extends AdminbaseController
 {
 //会员列表
 public function member_list()

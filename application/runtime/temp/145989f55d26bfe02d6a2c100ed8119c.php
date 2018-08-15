@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\admin\admin_rule_edit.html";i:1534313203;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -7,9 +8,9 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="__STATIC__/static/css/font.css">
-   <!--  <link rel="stylesheet" href="__STATIC__/static/css/weadmin.css"> -->
-    <script type="text/javascript" src="__STATIC__/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="/static/static/css/font.css">
+    <!-- <link rel="stylesheet" href="/static/static/css/weadmin.css"> -->
+    <script type="text/javascript" src="/static/static/js/jquery.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -19,13 +20,13 @@
 
 <body>
     <div class="weadmin-body">
-        <form class="layui-form" action="{:url('admin/admin/admin_rule_add')}" method="post">
+        <form class="layui-form" action="<?php echo url('admin/admin/admin_rule_add'); ?>" method="post">
             <div class="layui-form-item">
                 <label for="user_qxgzNAME" class="layui-form-label">
                     <span class="we-red">*</span>权限名称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="user_qxgzNAME" name="menu_name" required=""  autocomplete="off" class="layui-input">
+                    <input type="text" id="user_qxgzNAME" name="menu_name" value="<?php echo $auth['menu_name']; ?>" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -33,7 +34,7 @@
                     <span class="we-red">*</span>模块
                 </label>
                 <div class="layui-input-inline">
-          <input type="text" id="user_qxmc" readonly name="menu_module"  autocomplete="off" class="layui-input" value="admin" >
+          <input type="text" id="user_qxmc" readonly name="menu_module"  autocomplete="off" class="layui-input" value="<?php echo $auth['menu_module']; ?>" >
                 </div>
             </div>
              <div class="layui-form-item">
@@ -42,11 +43,10 @@
                 </label>
                 <div class="layui-input-inline">
                 <select id="cont" name="menu_controller">
-                {foreach name="planList" item="v"}
-                {if condition="$v neq 'Adminbase' AND $v neq 'Check'"}
-                <option value="{$v}">{$v}</option>
-                {/if}
-                {/foreach}
+                <?php if(is_array($planList) || $planList instanceof \think\Collection || $planList instanceof \think\Paginator): if( count($planList)==0 ) : echo "" ;else: foreach($planList as $key=>$v): if($v != 'Adminbase' AND $v != 'Check'): ?>
+
+                <option value="<?php echo $v; ?>" <?php if($v==$auth['menu_controller']): ?> selected <?php endif; ?>><?php echo $v; ?></option>
+                <?php endif; endforeach; endif; else: echo "" ;endif; ?>
                 </select>
                 </div>
             </div>
@@ -56,7 +56,8 @@
                 </label>
                 <div class="layui-input-inline">
                     <select id="action" name="menu_function">
-                  <option value="" ></option>
+                    <!-- <option value="<?php echo $auth['menu_function']; ?>" selected="selected"><?php echo $auth['menu_function']; ?></option> -->
+                    <option value="<?php echo $auth['menu_function']; ?>" selected="selected"><?php echo $auth['menu_function']; ?></option>
                 </select>
                 </div>
             </div>
@@ -66,7 +67,9 @@
                         描述
                     </label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" id="user_desc" name="menu_description" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容" id="user_desc" name="menu_description" class="layui-textarea">
+                        <?php echo $auth['menu_description']; ?>
+                        </textarea>
                     </div>
                 </div>
             <div class="layui-form-item">
@@ -75,7 +78,7 @@
             </div>
         </form>
     </div>
-    <script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript">
             $(function(){
                 //change事件触发
@@ -93,7 +96,7 @@
                                      });
                               });
                              //第一次进入默认访问第一个
-                            $("#action").html("");
+                            //$("#action").html("");
                              var cont = $('#cont option:selected').val();
                                      $.post('ajax_get_action',{controller:cont},function(data){
                                         console.log(data);

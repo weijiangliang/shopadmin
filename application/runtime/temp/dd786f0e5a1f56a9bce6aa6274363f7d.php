@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_list.html";i:1534236752;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_list.html";i:1534326965;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -31,15 +31,15 @@
 		</div>
 		<div class="weadmin-body">
 			<div class="layui-row">
-				<form class="layui-form layui-col-md12 we-search">
-					<div class="layui-inline">
+				<form class="layui-form layui-col-md12 we-search" action="<?php echo url('admin/admin/admin_list'); ?>" method="post">
+					<!-- <div class="layui-inline">
 						<input class="layui-input" placeholder="申请为管理员开始时间" name="start" id="start">
 					</div>
 					<div class="layui-inline">
 						<input class="layui-input" placeholder="申请为管理员结束时间" name="end" id="end">
-					</div>
+					</div> -->
 					<div class="layui-inline">
-						<input type="text" name="username" placeholder="请输入管理员名称" autocomplete="off" class="layui-input">
+						<input type="text" name="admin_name" placeholder="请输入管理员名称" autocomplete="off" class="layui-input">
 					</div>
 					<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
 				</form>

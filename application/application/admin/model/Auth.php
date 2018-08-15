@@ -18,7 +18,7 @@ class Auth extends Model
     protected $autoWriteTimestamp = true;
  
     // //创建时间字段
-     protected $createTime = 'role_create_time';
+     protected $createTime = 'menu_create_time';
     // //更新时间字段
-     protected $updateTime = 'role_update_time';
+     protected $updateTime = 'menu_update_time';
 }

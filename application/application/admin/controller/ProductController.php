@@ -5,7 +5,8 @@ use think\Controller;
 use think\Request;
 use think\Db;
 use think\Session;
-class ProductController extends Controller
+use app\admin\controller\AdminbaseController;
+class ProductController extends AdminbaseController
 {
     public function product_attribute()
     {

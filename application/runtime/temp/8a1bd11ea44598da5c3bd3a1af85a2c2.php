@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_rule.html";i:1534239150;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_rule.html";i:1534325333;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -10,6 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="/static/static/css/font.css">
 	<link rel="stylesheet" href="/static/static/css/weadmin.css">
+	<script type="text/javascript" src="/static/static/js/jquery.js"></script>
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -33,28 +34,19 @@
 	</div>
 	<div class="weadmin-body">
 		<div class="layui-row">
-			<form class="layui-form layui-col-md12 we-search layui-form-pane">
-				<div class="layui-input-inline">
-					<select name="cateid">
-						<option>根据权限分类查询</option>
-						<option>商品</option>
-						<option>订单</option>
-						<option>会员</option>
-					</select>
-				</div>
+			<form class="layui-form layui-col-md12 we-search layui-form-pane" action="<?php echo url("","",true,false);?>" method="post">
 				<!-- 权限名称搜索： -->
 				<div class="layui-inline">
-					<input class="layui-input" placeholder="根据权限名称查询" name="cate_name">
+					<input class="layui-input" placeholder="根据权限名称查询" name="menu_name">
 				</div>
 				<button class="layui-btn" lay-submit="" lay-filter="sreach">
-					<i class="layui-icon">&#xe615;</i>
+					<i class="layui-icon">&#xe615;</i>搜索
 				</button>
 			</form>
 		</div>
 		<div class="weadmin-block">
-			<button class="layui-btn layui-btn-danger" onclick="delAll()">
-				<i class="layui-icon"></i>批量删除</button>
-			<span class="fr" style="line-height:40px">共有数据：88 条</span>
+				<button class="layui-btn" onclick="WeAdminShow('添加角色','admin_rule_add.html')"><i class="layui-icon"></i>添加</button>
+			<span class="fr" style="line-height:40px">共有数据：<?php echo $count; ?>条</span>
 		</div>
 		<table class="layui-table">
 			<thead>
@@ -89,11 +81,11 @@
 					<td><?php echo $v['menu_create_time']; ?></td>
 					<td><?php echo $v['menu_operation']; ?></td>
 					<td class="td-manage">
-						<a title="编辑" onclick="WeAdminShow('添加权限规则','./admin_rule_add.html')" href="javascript:;">
-							<i class="layui-icon">&#xe654;</i>
+						<a title="编辑" onclick="WeAdminShow('编辑权限规则','./admin_rule_edit.html?menu_id=<?php echo $v['menu_id']; ?>')" href="javascript:;">
+							<i class="layui-icon">&#xe654;</i>编辑
 						</a>
-						<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-							<i class="layui-icon">&#xe640;</i>
+						<a title="删除" onclick="menu_del('<?php echo $v['menu_id']; ?>')" href="javascript:;">
+							<i class="layui-icon">&#xe640;</i>删除
 						</a>
 					</td>
 				</tr>
@@ -104,6 +96,26 @@
 	<?php echo $auth->render(); ?>
 	<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
 	<script src="/static/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	function menu_del(menu_id){
+		var returnVal = window.confirm("确定删除吗");
+        if(!returnVal) {
+           // alert('谢谢信任');
+		}else{
+			$.post('ajax_menu_del',{menu_id:menu_id},function(data){
+                if(data.status==1){
+                	alert(data.msg);
+                	window.location.reload();
+                }else{
+                	alert(data.msg);
+                }
+			});
+            }
+
+
+	}
+
+	</script>
 </body>
 
 </html>
