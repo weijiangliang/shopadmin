@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="__STATIC__/static/css/font.css">
-   <!--  <link rel="stylesheet" href="__STATIC__/static/css/weadmin.css"> -->
+    <link rel="stylesheet" href="__STATIC__/static/css/weadmin.css">
     <script type="text/javascript" src="__STATIC__/static/js/jquery.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -41,10 +41,10 @@
                     <span class="we-red">*</span>控制器
                 </label>
                 <div class="layui-input-inline">
-                <select id="cont" name="menu_controller">
+                <select id="cont" name="menu_controller" style="display: inline-block;  width: 260px;height: 35px;">
                 {foreach name="planList" item="v"}
                 {if condition="$v neq 'Adminbase' AND $v neq 'Check'"}
-                <option value="{$v}">{$v}</option>
+                <option  value="{$v}">{$v}</option>
                 {/if}
                 {/foreach}
                 </select>
@@ -55,7 +55,7 @@
                     <span class="we-red">*</span>方法
                 </label>
                 <div class="layui-input-inline">
-                    <select id="action" name="menu_function">
+                    <select id="action" name="menu_function" style="display: inline-block;  width: 260px;height: 35px;">
                   <option value="" ></option>
                 </select>
                 </div>

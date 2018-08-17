@@ -43,7 +43,8 @@
         </div>
         <div class="weadmin-block">
             <a class="layui-btn" 
-                href="{:url('admin/product/product_guige_add')}">添加</a>
+            onclick="WeAdminShow('商品添加信息','product_guige_add.html',1000,600)"
+               >添加</a>
             <span class="fr" style="line-height:40px">共有数据；{$count}条</span>
         </div>
         <table class="layui-table" id="memberList">
@@ -84,7 +85,9 @@
                     </td>
                     <td class="td-manage">
                         
-                        <a title="编辑" href="{:url('admin/product/product_guige_edit')}?id={$v['spec_id']}">
+                        <a title="编辑"
+                        onclick="WeAdminShow('商品添加信息','product_guige_edit.html?id={$v[\'spec_id\']}',1000,600)" >
+                   
                             <i class="layui-icon">&#xe642;</i>
                             编辑
                         </a>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\admin\admin_rule_edit.html";i:1534313203;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\admin\admin_rule_edit.html";i:1534472643;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="/static/static/css/font.css">
-    <!-- <link rel="stylesheet" href="/static/static/css/weadmin.css"> -->
+    <link rel="stylesheet" href="/static/static/css/weadmin.css">
     <script type="text/javascript" src="/static/static/js/jquery.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -42,7 +42,7 @@
                     <span class="we-red">*</span>控制器
                 </label>
                 <div class="layui-input-inline">
-                <select id="cont" name="menu_controller">
+                <select id="cont" name="menu_controller" style="display: inline-block;  width: 260px;height: 35px;">
                 <?php if(is_array($planList) || $planList instanceof \think\Collection || $planList instanceof \think\Paginator): if( count($planList)==0 ) : echo "" ;else: foreach($planList as $key=>$v): if($v != 'Adminbase' AND $v != 'Check'): ?>
 
                 <option value="<?php echo $v; ?>" <?php if($v==$auth['menu_controller']): ?> selected <?php endif; ?>><?php echo $v; ?></option>
@@ -55,8 +55,7 @@
                     <span class="we-red">*</span>方法
                 </label>
                 <div class="layui-input-inline">
-                    <select id="action" name="menu_function">
-                    <!-- <option value="<?php echo $auth['menu_function']; ?>" selected="selected"><?php echo $auth['menu_function']; ?></option> -->
+                    <select id="action" name="menu_function" style="display: inline-block;  width: 260px;height: 35px;">
                     <option value="<?php echo $auth['menu_function']; ?>" selected="selected"><?php echo $auth['menu_function']; ?></option>
                 </select>
                 </div>
@@ -96,7 +95,6 @@
                                      });
                               });
                              //第一次进入默认访问第一个
-                            //$("#action").html("");
                              var cont = $('#cont option:selected').val();
                                      $.post('ajax_get_action',{controller:cont},function(data){
                                         console.log(data);

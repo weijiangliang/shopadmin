@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="__STATIC__/static/css/font.css">
     <link rel="stylesheet" href="__STATIC__/static/css/weadmin.css">
+    <script src="__STATIC__/static/js/jquery.js" charset="utf-8"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -18,13 +19,17 @@
 
 <body>
     <div class="weadmin-body">
-        <form class="layui-form">
+        <form class="layui-form" action="{:url('admin/Active/gift_list_add')}" method="post">
             <div class="layui-form-item">
                 <label for="vip_id" class="layui-form-label">
-					<span class="we-red">*</span>礼包名称
+					<span class="we-red">*</span>活动场次
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="vip_id" name="vip_id" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                   <select name='activity_id' style="display: inline-block;  width: 260px;height: 35px;">
+                   {foreach name="active" item="v"}
+                   <option  value="{$v['id']}">{$v['title']}</option>
+                    {/foreach}
+                   </select>
                 </div>
                 <!-- <div class="layui-form-mid layui-word-aux">
 						请设置至少5个字符，将会成为您唯一的登录名
@@ -32,42 +37,32 @@
             </div>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>开始出售时间
+					<span class="we-red">*</span>选择商品
 				</label>
-                <div class="layui-input-inline">
-                    <input type="datetime-local" id="vip_date" name="vip_date" autocomplete="off" class="layui-input">
+                <div class="layui-input-inline" style="width: 400px;">
+                 <select name='good_id' style="display: inline-block;  width: 150px;height: 35px;" id="goods">
+                   {foreach name="goods" item="vol"}
+                   <option  value="{$vol['good_id']}">{:iconv_substr($vol['good_name'],0,10)}</option>
+                    {/foreach}
+                   </select>
+                   <input type="text" id="segoods"  style="display: inline-block;  width: 100px;height: 31px;" placeholder="请输入商品名称">
+                   <span id="btn" onclick="serach()" style="position: absolute;top: 1px; width: 35px;height: 35px; background-color: #009688; text-align: center"><i class="layui-icon" style="line-height: 35px">&#xe615;</i></span>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>结束结束时间
+					<span class="we-red">*</span>促销价
 				</label>
                 <div class="layui-input-inline">
-                    <input type="datetime-local" id="vip_date" name="vip_date" autocomplete="off" class="layui-input">
+                    <input type="text" name="activity_price" autocomplete="off" style="display: inline-block;  width: 260px;height: 35px;">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>礼包包含产品
+					<span class="we-red">*</span>vip促销价
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="vip_name" name="vip_name" lay-verify="required|nikename" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>礼包可享权益
-				</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="vip_name" name="vip_name" lay-verify="required|nikename" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>购买量
-				</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="vip_name" name="vip_name" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="0">
+                    <input type="text" id="vip_name" name="vip_activity_price"  style="display: inline-block;  width: 260px;height: 35px;">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -77,7 +72,31 @@
         </form>
     </div>
     <script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    function serach(){
+    	var goods_name = $("#segoods").val();
+    	if(goods_name==''){
+    		alert('不能为空');
+    	}else{
+    		 //$("#goods").html('');
+    		$.post('ajax_serachgoods',{goods_name:goods_name},function(data){
+            if(data.status==2){
+            	alert(data.msg);
+            }else{
+            	$("#goods").html('');
+            	$("#goods").append(data.str); 
+            }
+             
+    		});
+            }
 
+
+
+    }
+
+
+    </script>
+<script type="text/javascript"></script>
     <!-- <script>
 		layui.extend({
 			admin: '{/}__STATIC__/static/js/admin'

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_list_type.html";i:1533720757;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_list_type.html";i:1533879116;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -138,13 +138,8 @@ table#process td {
  </table>
      <input type="submit"  value="确认添加" />
 </form>
-
-
 <script src="/static/lib/layui/layui.js"></script>
-
-
 <script type="text/javascript" src="/static/static/js/jquery.js"></script>
-
 <script type="text/javascript" src="/static/static/js/sku.js"></script> 
 
 

@@ -47,7 +47,7 @@
             </form>
         </div>
         <div class="weadmin-block">
-            <a class="layui-btn" href="{:url('admin/product/product_category_add')}">
+        <a class="layui-btn" onclick="WeAdminShow('添加分类','product_category_add.html',1000,660)">
                 <i class="layui-icon"></i>添加</a>
             <span class="fr" style="line-height:40px">共有数据：{$count} 条</span>
         </div>
@@ -87,10 +87,10 @@
                     <td>{$v['sort_order']}</td>
                     <td class="td-manage">
                         
-                        <a title="编辑"  href="{:url('admin/product/product_category_edit')}?id={$v['id']}">
+                        <a title="编辑" onclick="WeAdminShow('添加分类','product_category_edit.html?id={$v[\'id\']}',1000,660)" \>
                             <i class="layui-icon">&#xe642;</i>编辑
                         </a>
-                        <a title="删除" onclick="member_del(this,'要删除的id')" href="{:url('admin/product/product_category_del')}?id={$v['id']}">
+                        <a title="删除"  href="{:url('admin/product/product_category_del')}?id={$v['id']}">
                             <i class="layui-icon">&#xe640;</i>删除
                         </a>
                     </td>

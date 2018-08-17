@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\product\product_list.html";i:1533548139;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\product\product_list.html";i:1534406190;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -48,9 +48,8 @@
             </form>
         </div>
         <div class="weadmin-block">
-             <a class="layui-btn" href="<?php echo url('admin/product/product_list_add'); ?>">
-                <i class="layui-icon"></i>添加</a> 
-            <span class="fr" style="line-height:40px">共有数据：<?php echo $count; ?> 条</span>
+             <a class="layui-btn"  onclick="WeAdminShow('商品添加信息','product_list_add.html',1000,600)">
+                <i class="layui-icon"></i>添加</a>
         </div>
         <table class="layui-table" id="memberList">
             <thead>
@@ -87,8 +86,8 @@
                             <i class="layui-icon">&#xe605;</i>
                         </div>
                     </td>
-                    <td><a href="<?php echo url('admin/product/product_list_addimage'); ?>?id=<?php echo $v['good_id']; ?>">添加相册</a>  </td>
-                    <td><a href="<?php echo url('admin/product/product_list_type'); ?>?id=<?php echo $v['good_id']; ?>">编辑模型</a>  </td>
+                    <td><a onclick="WeAdminShow('商品编辑','product_list_addimage.html?id=<?php echo $v['good_id']; ?>',1000,660)">添加相册</a>  </td>
+                    <td><a onclick="WeAdminShow('商品编辑','product_list_type.html?id=<?php echo $v['good_id']; ?>',1000,660)">编辑模型</a>  </td>
                     <td><?php echo $v['good_id']; ?></td>
                     <td><?php echo $v['good_name']; ?></td>
                     <td><?php echo $v['good_sn']; ?></td>
@@ -118,7 +117,7 @@
                     </td>
                     
                     <td class="td-manage">
-                        <a title="编辑商品数据"  href="<?php echo url('admin/product/product_list_edit'); ?>?id=<?php echo $v['good_id']; ?>">
+                        <a title="编辑商品数据"  onclick="WeAdminShow('商品编辑','product_list_edit.html?id=<?php echo $v['good_id']; ?>',1000,660)">
                             <i class="layui-icon">&#xe642;</i>编辑
                         </a>
                         <a title="删除选中的商品"  href="<?php echo url('admin/product/product_list_del'); ?>?id=<?php echo $v['good_id']; ?>">

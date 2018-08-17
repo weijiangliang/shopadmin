@@ -18,13 +18,18 @@
 
 <body>
     <div class="weadmin-body">
-        <form class="layui-form">
+        <form class="layui-form" action="{:url('admin/Active/gift_list_edit')}" method="post">
+        <input type="hidden" name="id" value="{$activegoods['id']}">
             <div class="layui-form-item">
                 <label for="vip_id" class="layui-form-label">
-					<span class="we-red">*</span>礼包名称
+					<span class="we-red">*</span>活动场次
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="vip_id" name="vip_id" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="298专享礼包">
+                   <select name='activity_id'>
+                   {foreach name="active" item="v"}
+                   <option  value="{$v['id']}">{$v['title']}</option>
+                    {/foreach}
+                   </select>
                 </div>
                 <!-- <div class="layui-form-mid layui-word-aux">
 						请设置至少5个字符，将会成为您唯一的登录名
@@ -32,46 +37,34 @@
             </div>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>开始出售时间
+					<span class="we-red">*</span>选择商品
 				</label>
                 <div class="layui-input-inline">
-                    <input type="datetime-local" id="vip_date" name="vip_date" autocomplete="off" class="layui-input">
+                 <select name='good_id'>
+                   {foreach name="goods" item="vol"}
+                   <option  value="{$vol['good_id']}">{:iconv_substr($vol['good_name'],0,10)}</option>
+                    {/foreach}
+                   </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>结束结束时间
+					<span class="we-red">*</span>促销价
 				</label>
                 <div class="layui-input-inline">
-                    <input type="datetime-local" id="vip_date1" name="vip_date" autocomplete="off" class="layui-input">
+                    <input type="text" name="activity_price" autocomplete="off" value="{$activegoods['activity_price']}">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>礼包包含产品
+					<span class="we-red">*</span>vip促销价
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="vip_name" name="vip_name" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="*******">
+                    <input type="text" id="vip_name" name="vip_activity_price" lay-verify="required|nikename" autocomplete="off" class="layui-input" value="{$activegoods['vip_activity_price']}">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>礼包可享权益
-				</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="vip_name1" name="vip_name" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="*******">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>购买量
-				</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="vip_name2" name="vip_name" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="0">
-                </div>
-            </div>
-            <div class="layui-form-item">
-
+                </label>
                 <button class="layui-btn" lay-filter="add" lay-submit="" style="margin-left: 136px">确定</button>
             </div>
         </form>

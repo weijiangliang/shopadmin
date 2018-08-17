@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\user\member_list.html";i:1534123884;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\user\member_list.html";i:1534412241;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -85,7 +85,9 @@
 							</a>	
 						</td>
 						<td class="td-manage">
-							<a title="编辑"  href="<?php echo url('admin/user/member_edit'); ?>?id=<?php echo $v['id']; ?>">
+							<a title="编辑"  
+							onclick="WeAdminShow('会员列表编辑','member_edit.html?id=<?php echo $v['id']; ?>',1000,600)"
+							>
 								<i class="layui-icon">&#xe642;</i>编辑
 							</a>
 							<a title="删除" href="<?php echo url('admin/user/member_del'); ?>?id=<?php echo $v['id']; ?>">
@@ -100,16 +102,6 @@
 		<!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
 		<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
 		<script src="/static/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
-		<!-- <script type="text/javascript">
-		 function ajaxuser_satatus(){
-		var user_status = <?php echo $v['user_status']; ?>;
-
-		$.post("url('admin/user/user_status')}",{user_status:user_status},function(data){
-			console.log(data);
-
-		})
-}
-		</script> -->
 	</body>
 
 </html>

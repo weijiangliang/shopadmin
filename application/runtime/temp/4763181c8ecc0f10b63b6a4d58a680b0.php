@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\index\index.html";i:1534327489;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\index\index.html";i:1534483533;}*/ ?>
 <!doctype html>
 <html lang="en">
 
@@ -44,17 +44,17 @@
 		<ul class="layui-nav right" lay-filter="">
 			<li class="layui-nav-item">
 				<a href="javascript:;">
-					<img src="http://t.cn/RCzsdCq" class="layui-nav-img">Admin</a>
+					<img src="http://t.cn/RCzsdCq" class="layui-nav-img"><?php echo \think\Request::instance()->session('username'); ?></a>
 				<dl class="layui-nav-child">
 					<!-- 二级菜单 -->
 					<dd>
-						<a onclick="WeAdminShow('个人中心','./pages/person/person.html')">基本资料</a>
+						<a onclick="WeAdminShow('个人中心','./pages/person/person.html',400,600)">基本资料</a>
 					</dd>
 					<dd>
-						<a onclick="WeAdminShow('切换帐号','./login.html')">切换帐号</a>
+						<a onclick="WeAdminShow('切换帐号','login.html',500,600)">切换帐号</a>
 					</dd>
 					<dd>
-						<a class="loginout" href="login.html">退出</a>
+						<a class="loginout" href="<?php echo url('admin/Login/outlogin'); ?>">退出</a>
 					</dd>
 				</dl>
 			</li>
@@ -246,13 +246,13 @@
 						<li>
 							<a _href="<?php echo url('admin/active/activity_list'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
-								<cite>活动列表</cite>
+								<cite>活动场次</cite>
 							</a>
 						</li>
 						<li>
 							<a _href="<?php echo url('admin/active/gift_list'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
-								<cite>礼包列表</cite>
+								<cite>活动商品</cite>
 							</a>
 						</li>
 					</ul>
@@ -265,55 +265,55 @@
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a _href="./pages/echarts/echarts1.html">
+							<a _href="<?php echo url('admin/echarts/echarts1'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>拆线图</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/echarts/echarts2.html">
+							<a _href="<?php echo url('admin/echarts/echarts2'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>堆叠柱状图</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/echarts/echarts3.html">
+							<a _href="<?php echo url('admin/echarts/echarts3'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>地图</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/echarts/echarts4.html">
+							<a _href="<?php echo url('admin/echarts/echarts4'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>饼图</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/echarts/echarts5.html">
+							<a _href="<?php echo url('admin/echarts/echarts5'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>雷达图</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/echarts/echarts6.html">
+							<a _href="<?php echo url('admin/echarts/echarts6'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>k线图</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/echarts/echarts7.html">
+							<a _href="<?php echo url('admin/echarts/echarts7'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>热力图</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/echarts/echarts8.html">
+							<a _href="<?php echo url('admin/echarts/echarts8'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>仪表图</cite>
 							</a>
 						</li>
 						<li>
-							<a _href="./pages/echarts/echarts9.html">
+							<a _href="<?php echo url('admin/echarts/echarts9'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>地图DIY实例</cite>
 							</a>
@@ -328,7 +328,7 @@
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a _href="./pages/finance/finance_list.html">
+							<a _href="<?php echo url('admin/finance/finance_list'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>财务列表</cite>
 							</a>

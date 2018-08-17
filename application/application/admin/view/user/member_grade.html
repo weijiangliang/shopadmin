@@ -49,7 +49,9 @@
 		</div> -->
     <div class="weadmin-body">
         <div class="weadmin-block">
-            <a class="layui-btn" href="{:url('admin/User/member_grade_add')}"><i class="layui-icon"></i>添加会员等级</a>
+            <a class="layui-btn"
+            onclick="WeAdminShow('会员列表编辑','member_grade_add.html',1000,600)"
+             ><i class="layui-icon"></i>添加会员等级</a>
             <span class="fr" style="line-height:40px">共有数据:{$count}条</span>
         </div>
         <table class="layui-table">
@@ -68,7 +70,7 @@
                     <td>{$v['level_name']}</td>
                     <td>{$v['describe']}</td>
                     <td>
-                        <a title="编辑"  href="{:url('admin/User/member_editlevel')}?id={$v['level_id']}">
+                        <a title="编辑"   onclick="WeAdminShow('会员列表编辑','member_editlevel.html?id={$v[\'level_id\']}',1000,600)">
                             <i class="layui-icon">&#xe642;</i>编辑
                         </a>
                         <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\admin\admin_role_add.html";i:1534235374;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\admin\admin_role_add.html";i:1534321191;}*/ ?>
 <!DOCTYPE html>
 <html>
 

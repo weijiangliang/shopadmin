@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\product\product_brand.html";i:1533544812;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\product\product_brand.html";i:1534470845;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -48,7 +48,9 @@
             </form>
         </div>
         <div class="weadmin-block">
-            <a class="layui-btn" href="<?php echo url('admin/product/product_brand_add'); ?>">
+            <a class="layui-btn" 
+            onclick="WeAdminShow('品牌添加信息','product_brand_add.html',1000,700)"
+            >
                 <i class="layui-icon"></i>添加</a>
             <span class="fr" style="line-height:40px">共有数据:<?php echo $count; ?>条</span>
         </div>
@@ -80,7 +82,7 @@
                     </td>
                     <td><?php echo $v['id']; ?></td>
                     <td><?php echo $v['brand_name']; ?></td>
-                    <td><img src="/static/<?php echo $v['brand_logo']; ?>" alt="logo"></td>
+                    <td><img src="/uploads/<?php echo $v['brand_logo']; ?>" alt="logo"></td>
                     <td><?php echo $v['cate_name']; ?></td>
                     <?php if($v['is_hot']==1): ?>
                     <td>是</td>
@@ -93,7 +95,9 @@
                     </td>
                     <td class="td-manage">
                       
-                        <a title="编辑" href="<?php echo url('admin/product/product_brand_edit'); ?>?id=<?php echo $v['id']; ?>">
+                        <a title="编辑" 
+                        onclick="WeAdminShow('商品添加信息','product_brand_edit.html?id=<?php echo $v['id']; ?>',1000,600)"
+                        >
                             <i class="layui-icon">&#xe642;</i>编辑
                         </a>
                        

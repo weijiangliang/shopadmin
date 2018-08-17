@@ -32,18 +32,18 @@
 		</div> -->
     <div class="weadmin-body">
         <div class="layui-row">
-            <form class="layui-form layui-col-md12 we-search">
+            <form class="layui-form layui-col-md12 we-search" action="{:url('admin/Active/activity_list')}" method="post">
                 活动搜索：
                 <div class="layui-inline">
-                    <input type="text" name="vip_name" placeholder="请输入活动名称" autocomplete="off" class="layui-input">
+                    <input type="text" name="title" placeholder="请输入活动场次名称" autocomplete="off" class="layui-input">
                 </div>
                 <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
             </form>
         </div>
         <div class="weadmin-block">
-            <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-            <button class="layui-btn" onclick="WeAdminShow('添加活动信息','./activity_list_add.html',600,400)"><i class="layui-icon"></i>添加</button>
-            <span class="fr" style="line-height:40px">共有数据：88 条</span>
+           <!--  <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button> -->
+            <button class="layui-btn" onclick="WeAdminShow('添加活动信息','activity_list_add.html',600,600)"><i class="layui-icon"></i>添加</button>
+            <span class="fr" style="line-height:40px">共有数据:{$count}条</span>
         </div>
         <table class="layui-table" id="memberList">
             <thead>
@@ -51,55 +51,68 @@
                     <th>
                         <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
                     </th>
-                    <th>活动名称</th>
-                    <th>活动内容</th>
+                    <th>活动ID</th>
+                    <th>场次名称</th>
                     <th>开始时间</th>
                     <th>结束时间</th>
-                    <th>响应情况</th>
+                    <th>活动图片</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
+            {foreach name="active" item="v"}
                 <tr data-id="1">
                     <td>
                         <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="1"><i class="layui-icon">&#xe605;</i></div>
                     </td>
-                    <td>夏日狂欢季</td>
-                    <td>******</td>
-                    <td>2017/06/01</td>
-                    <td>2017/06/07</td>
-                    <td>优</td>
+                    <td>{$v['id']}</td>
+                    <td>{$v['title']}</td>
+                    <td>{:date('Y-m-d ',$v['start_time'])}</td>
+                    <td>{:date('Y-m-d ',$v['end_time'])}</td>
+                    <td><img src="__UPLOAD__/{$v['thumb']}"></td>
                     <td class="td-manage">
-                        <a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
-                            <i class="layui-icon">&#xe601;</i>
-                        </a>
-                        <a title="编辑" onclick="WeAdminEdit('编辑活动信息','./activity_list_edit.html', 1, 600, 400)" href="javascript:;">
-                            <i class="layui-icon">&#xe642;</i>
+                       
+                        <a title="编辑" onclick="WeAdminEdit('编辑活动信息','activity_list_edit.html?id={$v[\'id\']}', 1, 600, 400)" href="javascript:;">
+                            <i class="layui-icon">&#xe642;</i>编辑
                         </a>
                         <a onclick="WeAdminShow('添加活动信息','./activity_list_add.html',600,400)" title="添加会员信息" href="javascript:;">
                             <i class="layui-icon">&#xe654;</i>
                         </a>
-                        <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                            <i class="layui-icon">&#xe640;</i>
+                        <a title="删除" onclick="active_del('{$v[\'id\']}')" href="javascript:;">
+                            <i class="layui-icon">&#xe640;</i>删除
                         </a>
                     </td>
                 </tr>
+                {/foreach}
             </tbody>
         </table>
-        <div class="page">
-            <div>
-                <a class="prev" href="">&lt;&lt;</a>
-                <a class="num" href="">1</a>
-                <span class="current">2</span>
-                <a class="num" href="">3</a>
-                <a class="num" href="">...</a>
-                <a class="next" href="">&gt;&gt;</a>
-            </div>
+        
         </div>
     </div>
+    {$active->render()}
     <!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
     <script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
     <script src="__STATIC__/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    function active_del(id){
+        var returnVal = window.confirm("确定删除吗");
+        if(!returnVal) {
+           // alert('谢谢信任');
+        }else{
+            $.post('ajax_active_del',{id:id},function(data){
+                if(data.status==1){
+                    alert(data.msg);
+                    window.location.reload();
+                }else{
+                    alert(data.msg);
+                }
+            });
+            }
+
+
+    }
+    </script>
 </body>
 
 </html>

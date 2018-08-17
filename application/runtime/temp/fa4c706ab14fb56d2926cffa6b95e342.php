@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\product\product_guige.html";i:1533879248;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"E:\shop\public/../application/admin\view\product\product_guige.html";i:1534410928;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -44,7 +44,8 @@
         </div>
         <div class="weadmin-block">
             <a class="layui-btn" 
-                href="<?php echo url('admin/product/product_guige_add'); ?>">添加</a>
+            onclick="WeAdminShow('商品添加信息','product_guige_add.html',1000,600)"
+               >添加</a>
             <span class="fr" style="line-height:40px">共有数据；<?php echo $count; ?>条</span>
         </div>
         <table class="layui-table" id="memberList">
@@ -83,7 +84,9 @@
                     </td>
                     <td class="td-manage">
                         
-                        <a title="编辑" href="<?php echo url('admin/product/product_guige_edit'); ?>?id=<?php echo $v['spec_id']; ?>">
+                        <a title="编辑"
+                        onclick="WeAdminShow('商品添加信息','product_guige_edit.html?id=<?php echo $v['spec_id']; ?>',1000,600)" >
+                   
                             <i class="layui-icon">&#xe642;</i>
                             编辑
                         </a>

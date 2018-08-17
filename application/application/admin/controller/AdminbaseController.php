@@ -27,10 +27,11 @@ class AdminbaseController extends Controller
      // }
      
 
-     // //检查是否登录
-     // if(!Session::has('username')) {
-     // 	$this->redirect('admin/Login/login');
-     // }
+     //检查是否登录
+     if(!Session::has('username')) {
+
+     	$this->redirect('admin/Login/login');
+     }
      
      //针对方法判断是否有访问权限
      $where['menu_module'] = $this->request->module(); //获取当前模块名称
@@ -41,9 +42,9 @@ class AdminbaseController extends Controller
     
      //$menus = AdminRole::where('role_id',Session::get('admin_role_id'))->value('role_permissions');//所在角色的权限
      //运用时
-          //$admin  =  Admin::where('admin_name',Session::get('username'))->find();
+        $admin  =  Admin::where('admin_name',Session::get('username'))->find();
      //测试时
-     $admin  =  Admin::where('admin_name','admin')->find();
+    // $admin  =  Admin::where('admin_name','admin')->find();
 
 
      $menus = $admin['admin_role_id'];

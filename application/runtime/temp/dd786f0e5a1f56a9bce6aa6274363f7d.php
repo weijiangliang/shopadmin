@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_list.html";i:1534326965;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\admin\admin_list.html";i:1534472043;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -80,7 +80,7 @@
 							<a title="编辑" onclick="WeAdminShow('编辑当前管理员信息','admin_list_edit.html?admin_id=<?php echo $v['admin_id']; ?>')" href="javascript:;">
 								<i class="layui-icon">&#xe642;</i>编辑
 							</a>
-							<a title="编辑" onclick="WeAdminShow('编辑当前管理员信息','admin_editrole.html?id=<?php echo $v['admin_id']; ?>')" href="javascript:;">
+							<a title="编辑" onclick="WeAdminShow('分配管理员权限','admin_editrole.html?id=<?php echo $v['admin_id']; ?>')" href="javascript:;">
 								<i class="layui-icon">&#xe642;</i>分配角色
 							</a>
 							<a title="删除" onclick="admin_list('<?php echo $v['admin_id']; ?>')" href="javascript:;">

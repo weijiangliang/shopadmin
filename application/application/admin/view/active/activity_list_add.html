@@ -18,13 +18,13 @@
 
 <body>
     <div class="weadmin-body">
-        <form class="layui-form">
+        <form class="layui-form" action="{:url('admin/active/activity_list_add')}" enctype="multipart/form-data" method="post">
             <div class="layui-form-item">
                 <label for="vip_id" class="layui-form-label">
-					<span class="we-red">*</span>活动名称
+					<span class="we-red">*</span>场次名称
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="vip_id" name="vip_id" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                    <input type="text" id="vip_id" name="title" lay-verify="required|nikename" autocomplete="off" class="layui-input">
                 </div>
                 <!-- <div class="layui-form-mid layui-word-aux">
 						请设置至少5个字符，将会成为您唯一的登录名
@@ -32,36 +32,28 @@
             </div>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>活动内容
-				</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="vip_name" name="vip_name" lay-verify="required|nikename" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="vip_name" class="layui-form-label">
 					<span class="we-red">*</span>活动开始时间
 				</label>
                 <div class="layui-input-inline">
-                    <input type="datetime-local" id="vip_date" name="vip_date" autocomplete="off" class="layui-input">
-                </div>
+                   <input class="layui-input" placeholder="活动开始时间" name="start_time" id="start">
+          </div>
             </div>
             <div class="layui-form-item">
                 <label for="vip_name" class="layui-form-label">
 					<span class="we-red">*</span>活动结束时间
 				</label>
                 <div class="layui-input-inline">
-                    <input type="datetime-local" id="vip_date" name="vip_date" autocomplete="off" class="layui-input">
+                    
+                    <input class="layui-input" placeholder="活动结束时间" name="end_time" id="end">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label for="vip_name" class="layui-form-label">
-					<span class="we-red">*</span>活动响应情况
+           <div class="layui-form-item">
+                <label for="vip_id" class="layui-form-label">
+					<span class="we-red">*</span>场主题图片
 				</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="vip_name" name="vip_name" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+                    <input type="file" id="vip_id" name="thumb" autocomplete="off" class="layui-input">
                 </div>
-            </div>
             <div class="layui-form-item">
                 </label>
                 <button class="layui-btn" lay-filter="add" lay-submit="" style="margin-left: 136px">确定</button>
@@ -69,6 +61,8 @@
         </form>
     </div>
     <script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
+
+    	<script src="__STATIC__/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- <script>
 		layui.extend({

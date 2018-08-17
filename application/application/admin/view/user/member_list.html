@@ -84,7 +84,9 @@
 							</a>	
 						</td>
 						<td class="td-manage">
-							<a title="编辑"  href="{:url('admin/user/member_edit')}?id={$v['id']}">
+							<a title="编辑"  
+							onclick="WeAdminShow('会员列表编辑','member_edit.html?id={$v[\'id\']}',1000,600)"
+							>
 								<i class="layui-icon">&#xe642;</i>编辑
 							</a>
 							<a title="删除" href="{:url('admin/user/member_del')}?id={$v['id']}">
@@ -99,16 +101,6 @@
 		<!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
 		<script src="__STATIC__/lib/layui/layui.js" charset="utf-8"></script>
 		<script src="__STATIC__/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
-		<!-- <script type="text/javascript">
-		 function ajaxuser_satatus(){
-		var user_status = {$v['user_status']};
-
-		$.post("url('admin/user/user_status')}",{user_status:user_status},function(data){
-			console.log(data);
-
-		})
-}
-		</script> -->
 	</body>
 
 </html>

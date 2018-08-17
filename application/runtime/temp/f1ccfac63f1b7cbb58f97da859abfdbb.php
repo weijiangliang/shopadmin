@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\login\login.html";i:1533371431;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\login\login.html";i:1534468444;}*/ ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,9 +21,9 @@
         <div id="darkbannerwrap"></div>
         
         <form method="post" action="<?php echo url('admin/login/login'); ?>" >
-            <input name="name" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <input name="admin_name" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
-            <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <input name="admin_password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
             <hr class="hr15">
             <input  value="登录"  style="width:100%;" type="submit">
             <hr class="hr20" >

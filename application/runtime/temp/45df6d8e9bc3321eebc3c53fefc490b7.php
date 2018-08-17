@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\admin\admin_editrole.html";i:1534322469;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\admin\admin_editrole.html";i:1534471964;}*/ ?>
 <!DOCTYPE html>
 <html>
   
@@ -42,8 +42,8 @@
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
-              <input  type="submit"  lay-filter="add" lay-submit="" value="确定" />
-                  
+              <!-- <input  type="submit"  lay-filter="add" lay-submit="" value="确定" /> -->
+             <button  class="layui-btn" lay-filter="add" lay-submit="">确定</button>
 
           </div>
       </form>
