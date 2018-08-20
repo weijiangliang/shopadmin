@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"E:\shop\public/../application/admin\view\user\member_account.html";i:1533878709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"E:\shop\public/../application/admin\view\user\member_account.html";i:1534482650;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -8,8 +8,8 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<!--     <link rel="stylesheet" href="/static/static/css/font.css"> -->
-<!--     <link rel="stylesheet" href="/static/static/css/weadmin.css"> -->
+    <link rel="stylesheet" href="/static/static/css/font.css">
+    <link rel="stylesheet" href="/static/static/css/weadmin.css">
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -48,9 +48,11 @@
                     <span class="we-red">*</span>充值类型
                 </label>
                 <div class="layui-input-inline">
-                   <input type="radio" name="type" value="1" checked="1">增加
-                   <input type="radio" name="type" value="2" >扣除
-                   <input type="text" id="vip_id" name="num" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="请输入充值金额">
+                   <input type="radio" name="type" value="1" checked="1" style="display: inline-block;">增加
+                   <input type="radio" name="type" value="2" style="display: inline-block;">扣除 
+                   <input type="text" id="vip_id" name="num" lay-verify="required|nikename" autocomplete="off" class="layui-input" placeholder="请输入充值金额" >
+                   <br />
+                  
                 </div>
      
 
@@ -63,10 +65,7 @@
                     <textarea rows="10" cols="36" name="desc"></textarea>
                 </div>
             </div>
-
-
                 <button class="layui-btn my_sure" lay-filter="add" lay-submit="" style="margin-left: 136px">确定</button>
-                <button class="layui-btn layui-btn-danger" lay-filter="add" lay-submit="" style="margin-left: 16px">重置</button>
             </div>
         </form>
     </div>

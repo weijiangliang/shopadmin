@@ -1,11 +1,12 @@
 <?php
 namespace app\admin\controller;
 use app\admin\controller\CheckController;
+use app\admin\controller\AdminbaseController;
 use think\Controller;
 use think\Request;
 use think\Db;
 use think\Session;
-class UserController extends Controller
+class UserController extends AdminbaseController
 {
 //会员列表
 public function member_list()
@@ -20,15 +21,15 @@ public function member_list()
   	]);
 	}
 	$users = db('user')->where('auth_status',2)->paginate(10);
+	// var_dump($users);
+	// die;
 	$count = db('user')->where('auth_status',2)->count();
-
-  return $this->fetch('member_list',[
+    return $this->fetch('member_list',[
   	     'count' =>$count,
   	     'user'=>$users
   	]);
 
 }
-
 //删除会员
 public function member_del(){
 	$id = trim(input('id'));
@@ -46,7 +47,6 @@ public function member_del(){
 	}
 
 }
-
 //编辑会员信息
 public function member_edit(){
 	if(Request::instance()->isPost()){
@@ -414,6 +414,7 @@ public function member_account()
 //修改用户状态
 public function user_status()
 {
+
 	$user_sattus = trim(input('user_status'));
 	$id = trim(input('id'));
 	if(empty($user_sattus)||empty($id)){

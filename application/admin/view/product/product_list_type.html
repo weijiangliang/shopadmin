@@ -114,39 +114,40 @@ table#process td {
                             <div class="div_title"><span>产品规格</span></div>
                          <div class="div_contentlist">
                             </div>
-                            <ul>
+                            <ul id="ul1">
                             <li><div id="createTable"></div></li>
                             </ul>
                             </div> 
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+             <input type="submit"  value="确认添加" style="background-color: #009688;margin-left: 200px;" /> 
         </div>
 
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
+    <span>属性添加:</span>
+    <table id="ajax_attr">
+    <tr>
+   </tr> 
+ </table>
      <div class="btn">
 
     </div>
-     <table id="ajax_attr">
-   <tr>
-   </tr> 
- </table>
-     <input type="submit"  value="确认添加" />
+
+
 </form>
 <script src="__STATIC__/lib/layui/layui.js"></script>
 <script type="text/javascript" src="__STATIC__/static/js/jquery.js"></script>
 <script type="text/javascript" src="__STATIC__/static/js/sku.js"></script> 
-
-
-
 <script type="text/javascript">
 /** 以下 商品规格相关 js*/
 $(document).ready(function(){
 $("#spec_type").change(function(){
+   // $("#process").html("");
     $("#ajax_attr>tbody").html('');
     $(".div_contentlist").html('');
     var type_id = $('#spec_type option:selected').val(); 
@@ -154,7 +155,6 @@ $("#spec_type").change(function(){
     $.post('ajax_product_type',{type_id:type_id,goods_id:goods_id},function(data){
         if(data.attr!=''){
          $.each(data.attr, function (index,obj) {
-
           //可用
         // var data_arrt_option = $("<tr><td>"+obj.attr_name+"</td><td><input type='text' name='attr["+obj.attr_id+"]' value='"+ obj.attr_values+"'></td></tr>");
         //   $("#ajax_attr>tbody").append(data_arrt_option); 
@@ -176,7 +176,7 @@ $("#spec_type").change(function(){
               var data_spec_option = $(obj);
               $(".div_contentlist").append(data_spec_option);
        });
-}
+     }
     });
 
 });

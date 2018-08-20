@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"E:\shop\public/../application/admin\view\user\exam_list.html";i:1533808636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"E:\shop\public/../application/admin\view\user\exam_list.html";i:1534416284;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -61,7 +61,7 @@
 					
 				</thead>
 				<tbody>
-				<?php if(is_array($auth) || $auth instanceof \think\Collection || $auth instanceof \think\Paginator): if( count($auth)==0 ) : echo "" ;else: foreach($auth as $key=>$v): ?>
+				<?php if(is_array($auth) || $auth instanceof \think\Collection || $auth instanceof \think\Paginator): if( count($auth)==0 ) : echo "" ;else: foreach($auth as $key=>$v): ?>     
 					<tr data-id="1">
 						<td>
 							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="1"><i class="layui-icon">&#xe605;</i></div>
@@ -70,12 +70,14 @@
 						<td><?php echo $v['user_id']; ?></td>
 						<td><?php echo $v['real_name']; ?></td>
 						<td><?php echo $v['cardno']; ?></td>
-						<td><img src="<?php echo $v['auth_img']; ?>" title="身份证"> </td>
-						<td><a href="<?php echo url('admin/User/exam_list_add'); ?>?id=<?php echo $v['id']; ?>" style="color:blue"> <?php echo exam_status($v['auth_status']); ?></a></td>
+						<td><img src="/uploads<?php echo $v['auth_img']; ?>" title="身份证"> </td>
+						<td><a 
+						onclick="WeAdminShow('审核','exam_list_add.html?id=<?php echo $v['id']; ?>',1000,600)"
+						style="color:blue"> <?php echo exam_status($v['auth_status']); ?></a></td>
 						<td class="td-status">
-							<a title="编辑"  href="<?php echo url('admin/user/user_status'); ?>?id=<?php echo $v['id']; ?>&user_status=<?php echo $v['id']; ?>">
-								<i class="layui-icon">&#xe642;</i>
-							</a>
+							<!-- <a title="编辑"  href="<?php echo url('admin/user/user_status'); ?>?id=<?php echo $v['id']; ?>&user_status=<?php echo $v['id']; ?>">
+								<i class="layui-icon">&#xe642;</i>编辑
+							</a> -->
 							<a title="删除" href="<?php echo url('admin/user/member_del'); ?>?id=<?php echo $v['id']; ?>">
 								<i class="layui-icon">&#xe640;</i>删除
 							</a>

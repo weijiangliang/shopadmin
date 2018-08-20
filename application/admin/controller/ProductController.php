@@ -5,7 +5,8 @@ use think\Controller;
 use think\Request;
 use think\Db;
 use think\Session;
-class ProductController extends Controller
+use app\admin\controller\AdminbaseController;
+class ProductController extends AdminbaseController
 {
     public function product_attribute()
     {
@@ -36,21 +37,27 @@ class ProductController extends Controller
     public function product_attribute_add()
     {
        if(Request::instance()->isPost()){
-         $data['attr_name']=input('name');
+         $data['attr_name']=input('attr_name');
          $data['indx']=input('indx');
          $data['luru']=input('luru');
-         $data['attr_values']=input('attr_value');
+         $attr_values = str_replace(',', '，', input('attr_values'));
+         $data['attr_values']=$attr_values;
          $data['sort']=input('sort');
          $data['type_id']=input('type_id');
+         if(!$data['attr_name']||! $data['attr_values']){
+          $this->error('请输入值');
+          // echo "<script type=\"text/javascript\">alert('请输入值');</script>";
+          die;
+         }
          $attr = db('goods_attribute')->insert($data);
          if($attr){
-          $this->success('添加成功1',url('admin/product/product_attribute'));
+          $this->success('添加成功',url('admin/product/product_attribute'));
          }else{
            $this->error('添加失败',url('admin/product/product_attribute'));
          }
        }
        $type= db('goods_type')->select();
-      return $this->fetch('product_attribute_add',[
+       return $this->fetch('product_attribute_add',[
         'type'=>$type
         ]);
     }
@@ -69,7 +76,32 @@ public function product_attribute_del(){
       }
 
 }
+public function product_attribute_edit(){
+  if(Request::instance()->isPost()){
+         $attr_id = trim(input('attr_id'));
+         $data['attr_name']=input('attr_name');
+         $data['indx']=input('indx');
+         $data['luru']=input('luru');
+         $data['attr_values']=input('attr_values');
+         $data['sort']=input('sort');
+         $data['type_id']=input('type_id');
 
+         $attr = db('goods_attribute')->where('attr_id',$attr_id)->update($data);
+         if($attr){
+          $this->success('修改成功',url('admin/product/product_attribute'));
+         }else{
+           $this->error('修改失败',url('admin/product/product_attribute'));
+         }
+  }
+   $attr_id = trim(input('id'));
+   $type= db('goods_type')->select();
+   $attr = db('goods_attribute')->where('attr_id',$attr_id)->find();
+   return $this->fetch('product_attribute_edit',[
+    'type'=>$type,
+    'attr'=>$attr
+    ]);
+
+}
 
 public function product_brand()
     {
@@ -262,6 +294,22 @@ public function product_brand_del()
 
         ]);
     }
+
+
+//删除分类
+  public function product_category_del(){
+   $id = trim(input('id'));
+   $category = db('goods_category')->where('id',$id)->delete();
+   if(!$category){
+    $this->error('删除失败');
+    die;
+   }else{
+    $this->success('删除成功');
+    die;
+   }
+
+  }
+
 
  public function product_category_edit()
     {

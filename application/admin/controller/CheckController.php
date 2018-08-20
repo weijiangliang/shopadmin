@@ -14,9 +14,9 @@ class CheckController extends Controller
     public function login(){
     	 if(empty(session('username')))
         {
-            // $url = url('login/login');
-            // echo "<script>alert('请登录..');window.top.location.href='$url';</script>";
-            // exit;
+            $url = url('login/login');
+            echo "<script>alert('请登录..');window.top.location.href='$url';</script>";
+            exit;
         }
     }
 }

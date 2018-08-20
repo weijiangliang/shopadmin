@@ -1,9 +1,10 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"E:\shop\public/../application/admin\view\product\product_attribute_add.html";i:1533138572;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"E:\shop\public/../application/admin\view\product\product_attribute_add.html";i:1534488286;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script type="text/javascript" src="/static/static/js/jquery.js"></script>
 </head>
 <body>
     <div class="title">
@@ -14,7 +15,7 @@
     <form action="<?php echo url('admin/product/product_attribute_add'); ?>" method="post">
         <div class="inp_box">
             <span>属性名称：</span>
-            <input type="text" name="spec_name" class="inp_list">
+            <input type="text" name="attr_name" class="inp_list">
         </div>
         <div class="inp_box">
             <span>所属模型：</span>
@@ -26,20 +27,20 @@
         </div>
         <div class="inp_box">
             <span>能否进行检索：</span>
-            <input type="radio" name=""> 不需要检索
-            <input type="radio" name=""> 关键字检索
+            <input type="radio" name="indx" value="1"> 不需要检索
+            <input type="radio" name="indx" value="2"> 关键字检索
         </div>
         <div class="inp_box">
             <span>该属性值的录入方式：</span>
             <!-- <div class="choice"> -->
-            <input type="radio" name=""> 手工录入
-            <input type="radio" name=""> 从下列的列表中选择（以逗号隔开）
-            <input type="radio" name=""> 多行文本框
+            <input type="radio" name="luru" value="1"> 手工录入
+            <input type="radio" name="luru" value="2"> 从下列的列表中选择（以逗号隔开）
+            <input type="radio" name="luru" value="3"> 多行文本框
             <!-- </div> -->
         </div>
         <div class="inp_box">
             <span>属性值：</span> <br>
-            <span></span> <textarea name="spec_item" class="inp_text"> </textarea>
+            <span></span> <textarea name="attr_values" class="inp_text"> </textarea>
         </div>
         <div class="inp_box">
             <span>排序</span>
@@ -47,11 +48,18 @@
         </div>
         <div class="inp_box">
             <span></span>
-            <input type="submit" name="sub" value="确认提交" class="sub">
+            <input type="submit" name="sub" value="确认提交" class="sub"  id="btn1">
         </div>
     </form>
 </body>
+<script type="text/javascript">
 
+$("#btn1").change(function(){
+    alert(11);
+    layer.closeAll();
+});
+
+</script>
 
 <style>
     .title {

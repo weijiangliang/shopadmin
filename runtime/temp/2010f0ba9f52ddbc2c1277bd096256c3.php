@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"E:\shop\public/../application/admin\view\product\product_list_add.html";i:1533892410;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"E:\shop\public/../application/admin\view\product\product_list_add.html";i:1534405305;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -290,7 +290,7 @@
                                 <span class="we-red">*</span>商品详情描述
                             </label>
                             <div class="layui-input-inline">
-                                <textarea id="demo" style="display: none;" name="desc"></textarea>
+                                <textarea id="demo" style="display: block;" name="desc"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item">

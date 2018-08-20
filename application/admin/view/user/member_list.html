@@ -79,12 +79,14 @@
 						<td class="td-status">
 							<span class="layui-btn layui-btn-normal layui-btn-xs">{:auth_status($v['auth_status'])}</span></td>
 							<td class="td-manage">
-							<a title="编辑"  href="{:url('admin/user/user_status')}?id={$v['id']}&user_status={$v['user_status']}">
+							<a title="状态" onclick="ajaxuser_satatus()"  href="{:url('admin/user/user_status')}?id={$v['id']}&user_status={$v['user_status']}">
 								<i class="layui-icon">&#xe642;</i>{:user_status($v['user_status'])}
 							</a>	
 						</td>
 						<td class="td-manage">
-							<a title="编辑"  href="{:url('admin/user/member_edit')}?id={$v['id']}">
+							<a title="编辑"  
+							onclick="WeAdminShow('会员列表编辑','member_edit.html?id={$v[\'id\']}',1000,600)"
+							>
 								<i class="layui-icon">&#xe642;</i>编辑
 							</a>
 							<a title="删除" href="{:url('admin/user/member_del')}?id={$v['id']}">

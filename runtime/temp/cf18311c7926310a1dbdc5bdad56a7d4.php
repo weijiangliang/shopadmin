@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:59:"E:\shop\public/../application/admin\view\index\welcome.html";i:1533279838;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:59:"E:\shop\public/../application/admin\view\index\welcome.html";i:1534486863;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -46,7 +46,7 @@
 											</a>
 										</li>
 										<li class="layui-col-xs3">
-											<a href="../pages/order/order_list.html">
+											<a href="<?php echo url('admin/order/order_list'); ?>">
 												<i class="layui-icon">&#xe642;</i>
 												<cite>订单管理</cite>
 												<p>
@@ -55,7 +55,7 @@
 											</a>
 										</li>
 										<li class="layui-col-xs3">
-											<a href="../pages/admin/admin_list.html">
+											<a href="<?php echo url('admin/admin/admin_list'); ?>">
 												<i class="layui-icon">&#xe770;</i>
 												<cite>管理员管理</cite>
 												<p>
@@ -66,7 +66,7 @@
 									</ul>
 									<ul class="layui-row layui-col-space10">
 										<li class="layui-col-xs3">
-											<a href="../pages/admin/rule.html">
+											<a href="<?php echo url('admin/admin/rule'); ?>">
 												<i class="layui-icon layui-icon-set"></i>
 												<cite>设置</cite>
 											</a>
@@ -144,27 +144,28 @@
 								</tr>
 								<tr>
 									<td>服务器IP地址</td>
-									<td>192.168.1.1</td>
+									<td><?php echo $data['ip']; ?></td>
 								</tr>
 								<tr>
 									<td>服务器域名</td>
-									<td>github.com</td>
+									<td><?php echo $data['DNS']; ?></td>
 								</tr>
 								<tr>
 									<td>服务器端口 </td>
-									<td>80</td>
+									<td><?php echo $data['duankou']; ?></td>
 								</tr>
 								<tr>
 									<td>本文件所在文件夹 </td>
-									<td>D:\Web\WeAdmin\</td>
+									<td><?php echo $data['dir']; ?></td>
 								</tr>
 								<tr>
 									<td>时间 </td>
-									<td id="firstTime">2018-01-01 13:14:00</td>
+									<!-- <td id="firstTime"><?php echo $data['time']; ?></td> -->
+									<td ><?php echo date('Y-m-d H:i:s',$data['time']); ?></td>
 								</tr>
 								<tr>
 									<td>上次更新时间 </td>
-									<td id="lastTime">7210分钟</td>
+									<td ><?php echo date('Y-m-d H:i:s',$data['time']); ?></td>
 								</tr>
 							</tbody>
 						</table>

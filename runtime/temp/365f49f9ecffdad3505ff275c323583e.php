@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_brand_add.html";i:1533349213;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_brand_add.html";i:1534470946;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +35,7 @@
         </div>
          <div class="inp_box">
             <span>品牌logo：</span>
-            <input type="file" name="brand_logo" class="inp_list">
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="file" name="brand_logo" class="inp_list">
         </div>
         <div class="inp_box">
             <span>所属分类：</span>
@@ -146,6 +146,7 @@
         margin-right: 4px;
     }
 </style>
+<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="/static/static/js/jquery.js"></script>
 <script type="text/javascript">
 $(function(){

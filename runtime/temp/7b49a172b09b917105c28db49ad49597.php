@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\user\member_edit.html";i:1533800691;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\user\member_edit.html";i:1534471337;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="/static/static/css/font.css">
-<!-- 	<link rel="stylesheet" href="/static/static/css/weadmin.css"> -->
+	<link rel="stylesheet" href="/static/static/css/weadmin.css"> 
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -44,17 +44,17 @@
 				<label for="vip_sex" class="layui-form-label">性别</label>
 				<div class="layui-input-block" id="sex">
 				<?php if($user['sex']==1): ?>
-					<input type="radio" name="sex" value="2" title="男" >男
-					<input type="radio" name="sex" value="3" title="女">女
-					<input type="radio" name="sex" value="1" title="未知" checked>保密
+					<input type="radio" name="sex" value="2" title="男" style="display: inline-block;">男
+					<input type="radio" name="sex" value="3" title="女" style="display: inline-block;">女
+					<input type="radio" name="sex" value="1" title="未知" checked style="display: inline-block;">保密
 					<?php elseif($user['sex']==2): ?>
-					<input type="radio" name="sex" value="2" title="男" checked>男
-					<input type="radio" name="sex" value="3" title="女">女
-					<input type="radio" name="sex" value="1" title="未知">保密
+					<input type="radio" name="sex" value="2" title="男" checked style="display: inline-block;">男
+					<input type="radio" name="sex" value="3" title="女" style="display: inline-block;">女
+					<input type="radio" name="sex" value="1" title="未知" style="display: inline-block;">保密
 					<?php else: ?>
-					<input type="radio" name="sex" value="2" title="男" >男
-					<input type="radio" name="sex" value="3" title="女" checked>女
-					<input type="radio" name="sex" value="1" title="未知">保密
+					<input type="radio" name="sex" value="2" title="男" style="display: inline-block;">男
+					<input type="radio" name="sex" value="3" title="女" checked style="display: inline-block;">女
+					<input type="radio" name="sex" value="1" title="未知" style="display: inline-block;">保密
 					<?php endif; ?>
 
 				</div>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\order\order_view.html";i:1533870079;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\order\order_view.html";i:1534484499;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/static/css/font.css">
     <link rel="stylesheet" href="/static/static/css/weadmin.css">
     <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script src="/static/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -21,13 +22,61 @@
 <body>
     <div class="weadmin-body">
         <form class="layui-form">
+        <label for="order_gmsplb" class="layui-form-label">用户信息：
+                    <!-- <a class="layui-btn layui-btn-sm layui-btn-primary" onclick="addTable();">
+                        <i class="layui-icon">&#xe608;</i> 添加</a> -->
+                </label>
+                 <hr />
             <div class="layui-form-item">
                 <label for="order_username" class="layui-form-label">
                     <span class="we-red">*</span>用户名
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="order_username" name="order_username" required="" lay-verify="required" autocomplete="off" class="layui-input"
-                        value="<?php echo $order_info['user_id']; ?>" disabled="disabled">
+                        value="<?php echo $user['user_id']; ?>" disabled="disabled">
+                </div>
+            </div>
+             <div class="layui-form-item">
+                <label for="order_username" class="layui-form-label">
+                    <span class="we-red">*</span>用户昵称
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="order_username" name="order_username" required="" lay-verify="required" autocomplete="off" class="layui-input"
+                        value="<?php echo $user['nickname']; ?>" disabled="disabled">
+                </div>
+            </div>
+             <div class="layui-form-item">
+                <label for="order_username" class="layui-form-label">
+                    <span class="we-red" style="height:45px;line-height:45px; display: inline-block;">*</span>实名认证状态
+                </label>
+                <div class="layui-input-inline">
+                    <span   required="" lay-verify="required" autocomplete="off" class="layui-input"
+                        value="" disabled="disabled"><?php echo auth_status($user['auth_status']); ?></span>
+                </div>
+            </div>
+             <div class="layui-form-item">
+                <label for="order_username" class="layui-form-label">
+                    <span class="we-red">*</span>用户手机
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="order_username" name="order_username" required="" lay-verify="required" autocomplete="off" class="layui-input"
+                        value="<?php echo $user['phone']; ?>" disabled="disabled">
+                </div>
+            </div>
+            <br />
+           
+                 <hr />
+                  <label for="order_gmsplb" class="layui-form-label">订单信息：
+                    <!-- <a class="layui-btn layui-btn-sm layui-btn-primary" onclick="addTable();">
+                        <i class="layui-icon">&#xe608;</i> 添加</a> -->
+                </label>
+             <div class="layui-form-item">
+                <label for="order_address" class="layui-form-label">
+                    <span class="we-red">*</span>收货地址
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="order_address" name="order_address" required="" lay-verify="required" autocomplete="off" class="layui-input"
+                        value="<?php echo $order['address_mes']; ?>" disabled="disabled">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -50,21 +99,13 @@
             </div>
             <div class="layui-form-item">
                 <label for="order_phone" class="layui-form-label">
-                    <span class="we-red">*</span>手机
+                    <span class="we-red">*</span>收货人手机
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="order_phone" name="order_phone" required="" lay-verify="phone" autocomplete="off" class="layui-input" value="<?php echo $order['address_phone']; ?>" disabled="disabled">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label for="order_address" class="layui-form-label">
-                    <span class="we-red">*</span>收货地址
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="order_address" name="order_address" required="" lay-verify="required" autocomplete="off" class="layui-input"
-                        value="<?php echo $order['address_mes']; ?>" disabled="disabled">
-                </div>
-            </div>
+           
             <!-- <div class="layui-form-item">
                 <label for="order_wl" class="layui-form-label">
                     <span class="we-red">*</span>配送物流
@@ -91,10 +132,20 @@
                     <span class="we-red">*</span>
                 </div>
             </div>
+             <div class="layui-form-item">
+                <label for="order_fptt" class="layui-form-label">
+                    <span class="we-red">*</span>纳税人识别号</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="order_fptt" name="order_fptt" required="" lay-verify="email" autocomplete="off" class="layui-input" value="<?php echo $order['taxpayer']; ?>" disabled="disabled">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="we-red">*</span>
+                </div>
+            </div>
             <div class="layui-form-item layui-form-text">
-                <label for="order_gmsplb" class="layui-form-label">购买商品列表
-                    <!-- <a class="layui-btn layui-btn-sm layui-btn-primary" onclick="addTable();">
-                        <i class="layui-icon">&#xe608;</i> 添加</a> -->
+               
+                 <hr />
+                  <label for="order_gmsplb" class="layui-form-label">购买商品列表
                 </label>
                 <div class="layui-input-block">
                     <table class="layui-table" id="myTable">
@@ -126,16 +177,47 @@
                     </table>
                 </div>
             </div>
-            <div class="layui-form-item layui-form-text">
+           <!--  <div class="layui-form-item layui-form-text">
                 <label for="order_desc" class="layui-form-label">购买商品描述</label>
                 <div class="layui-input-block">
                     <textarea placeholder="请输入内容" id="order_desc" name="order_desc" class="layui-textarea" disabled="disabled"></textarea>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <button class="layui-btn" lay-filter="add" lay-submit="">增加</button>
-            </div>
+            </div> -->
+            
         </form>
+        <hr />
+           <form class="layui-form" action="<?php echo url('admin/order/shipping'); ?>" method="post"  <?php if($order_info['shipping_status']!=1): ?> style="display:none;" <?php endif; ?>>
+            <input type="hidden" name="order_info_id" value="<?php echo $order_info['order_info_id']; ?>">
+            <div class="layui-form-item">
+                    <label for="order_username" class="layui-form-label">
+                  <span class="we-red">*</span>物流名称
+              </label>
+                    <div class="layui-input-inline">
+                    <select  type="text" id="order_username" name="shipping_id" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                    <?php if(is_array($shipping) || $shipping instanceof \think\Collection || $shipping instanceof \think\Paginator): if( count($shipping)==0 ) : echo "" ;else: foreach($shipping as $key=>$v): ?>
+                    <option value="<?php echo $v['shipping_id']; ?>"><?php echo $v['shipping_name']; ?></option>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="order_username" class="layui-form-label">
+                  <span class="we-red">*</span>输入物流单号
+              </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="order_username" name="shipping_num" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                 <div class="layui-form-item">
+        <?php if($order_info['shipping_status']==1): ?>
+                <input type="submit" class="layui-btn" lay-filter="add" lay-submit="" value="<?php echo shipping_status($order_info['shipping_status']); ?>" />
+                <?php else: ?>
+               
+            </div>  
+        </form> 
+ <button class="layui-btn" lay-filter="add" ><?php echo shipping_status($order_info['shipping_status']); ?></button>
+                <?php endif; ?>
+       
     </div>
     <script type="text/javascript" src="/static/static/js/jquery.js"></script>
     <script>
@@ -227,8 +309,8 @@
              });
             }
             }
-            }
-        }
+            // }
+        // }
 
         }
     </script>

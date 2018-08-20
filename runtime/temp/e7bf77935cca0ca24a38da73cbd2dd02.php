@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"E:\shop\public/../application/admin\view\product\product_category.html";i:1533549108;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"E:\shop\public/../application/admin\view\product\product_category.html";i:1534406540;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -48,7 +48,7 @@
             </form>
         </div>
         <div class="weadmin-block">
-            <a class="layui-btn" href="<?php echo url('admin/product/product_category_add'); ?>">
+        <a class="layui-btn" onclick="WeAdminShow('添加分类','product_category_add.html',1000,660)">
                 <i class="layui-icon"></i>添加</a>
             <span class="fr" style="line-height:40px">共有数据：<?php echo $count; ?> 条</span>
         </div>
@@ -88,10 +88,10 @@
                     <td><?php echo $v['sort_order']; ?></td>
                     <td class="td-manage">
                         
-                        <a title="编辑"  href="<?php echo url('admin/product/product_category_edit'); ?>?id=<?php echo $v['id']; ?>">
+                        <a title="编辑" onclick="WeAdminShow('添加分类','product_category_edit.html?id=<?php echo $v['id']; ?>',1000,660)" \>
                             <i class="layui-icon">&#xe642;</i>编辑
                         </a>
-                        <a title="删除" onclick="member_del(this,'要删除的id')" href="<?php echo url('admin/product/product_category_del'); ?>?id=<?php echo $v['id']; ?>">
+                        <a title="删除"  href="<?php echo url('admin/product/product_category_del'); ?>?id=<?php echo $v['id']; ?>">
                             <i class="layui-icon">&#xe640;</i>删除
                         </a>
                     </td>

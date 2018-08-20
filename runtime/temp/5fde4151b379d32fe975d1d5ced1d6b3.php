@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\user\member_list.html";i:1533804163;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"E:\shop\public/../application/admin\view\user\member_list.html";i:1534412241;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -80,12 +80,14 @@
 						<td class="td-status">
 							<span class="layui-btn layui-btn-normal layui-btn-xs"><?php echo auth_status($v['auth_status']); ?></span></td>
 							<td class="td-manage">
-							<a title="编辑"  href="<?php echo url('admin/user/user_status'); ?>?id=<?php echo $v['id']; ?>&user_status=<?php echo $v['user_status']; ?>">
+							<a title="状态" onclick="ajaxuser_satatus()"  href="<?php echo url('admin/user/user_status'); ?>?id=<?php echo $v['id']; ?>&user_status=<?php echo $v['user_status']; ?>">
 								<i class="layui-icon">&#xe642;</i><?php echo user_status($v['user_status']); ?>
 							</a>	
 						</td>
 						<td class="td-manage">
-							<a title="编辑"  href="<?php echo url('admin/user/member_edit'); ?>?id=<?php echo $v['id']; ?>">
+							<a title="编辑"  
+							onclick="WeAdminShow('会员列表编辑','member_edit.html?id=<?php echo $v['id']; ?>',1000,600)"
+							>
 								<i class="layui-icon">&#xe642;</i>编辑
 							</a>
 							<a title="删除" href="<?php echo url('admin/user/member_del'); ?>?id=<?php echo $v['id']; ?>">

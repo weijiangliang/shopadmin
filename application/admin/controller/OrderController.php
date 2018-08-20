@@ -5,7 +5,8 @@ use think\Controller;
 use think\Request;
 use think\Db;
 use think\Session;
-class OrderController extends Controller
+use app\admin\controller\AdminbaseController;
+class OrderController extends AdminbaseController
 {
 //会员列表
 public function order_list()
@@ -88,14 +89,19 @@ public function order_view(){
 		}
 		$order_goods = db('order_goods')->where('order_info_id',$id)->select();
 		$order_info = db('order_info')->where('order_info_id',$id)->find();
+		$user_id = $order_info['user_id'];
+		$user = db('user')->where('user_id',$user_id)->find();
 		$order = db('order')->where('order_id',$order_info['order_id'])->find();
+		$shipping = db('shipping')->select();
 		if(!$order_goods){
-			$this->error('订单异常或没有订单商品',url('order/son_order_list'));
+			$this->error('没有订单商品',url('order/son_order_list'));
 		 die;
 		}
      return $this->fetch('order_view',[
+     	'shipping'=>$shipping,
      	'order_goods'=>$order_goods,
      	'order_info'=>$order_info,
+     	'user'=>$user,
      	'order'=>$order
      	]);
 	}
@@ -107,6 +113,47 @@ public function member_account()
 
   return $this->fetch('member_account');
 
+}
+//订单物流
+public function shipping(){
+	if(Request::instance()->isPost()){
+     $shipping_id=trim(input('shipping_id'));
+     $shipping_num = trim(input('shipping_num'));
+     $order_info_id = trim(input('order_info_id'));
+     // array(3) { ["user_inof_id"]=> string(1) "2" ["shipping_id"]=> string(1) "1" ["shipping_num"]=> string(9) "456456456" }
+    
+     if(!$shipping_id||!$shipping_num ||!$order_info_id){
+     	$this->error("物流发货异常");
+     	die;
+     } 
+     // var_dump(1111);
+     // die;
+     $shipping = db('shipping')->where('shipping_id',$shipping_id)->find();
+     if(!$shipping){
+         $this->error('物流有误');
+         die;
+     }
+     $data['shipping_name']=$shipping['shipping_name'];
+     $data['shipping_code']=$shipping['shipping_code'];
+     $data['shipping_number']=$shipping_num;
+     $data['send_time']=time();
+     $data['shipping_status'] = 2;
+     $order_info = db('order_info')->where('order_info_id',$order_info_id)->update($data);
+     if(!$order_info){
+           $this->error('子订单表更新失败');
+           die;
+     }else{
+     	$this->success('发货成功',url('order/son_order_list'));
+     	die;
+     }
+
+	}
+	// $user_inof_id = trim(input('user_info_id'));
+	// $shipping = db('shipping')->select();
+	// return $this->fetch('shipping',[
+	// 	'user_info_id'=>$user_inof_id,
+	// 	'shipping'=>$shipping
+	// 	]);
 }
 //删除商品
 public function ajaxorder_delgoods(){

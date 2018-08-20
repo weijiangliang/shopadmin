@@ -60,7 +60,7 @@
 					
 				</thead>
 				<tbody>
-				{foreach name="auth" item="v"}
+				{foreach name="auth" item="v"}     
 					<tr data-id="1">
 						<td>
 							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="1"><i class="layui-icon">&#xe605;</i></div>
@@ -69,12 +69,14 @@
 						<td>{$v['user_id']}</td>
 						<td>{$v['real_name']}</td>
 						<td>{$v['cardno']}</td>
-						<td><img src="{$v['auth_img']}" title="身份证"> </td>
-						<td><a href="{:url('admin/User/exam_list_add')}?id={$v['id']}" style="color:blue"> {:exam_status($v['auth_status'])}</a></td>
+						<td><img src="__UPLOAD__{$v['auth_img']}" title="身份证"> </td>
+						<td><a 
+						onclick="WeAdminShow('审核','exam_list_add.html?id={$v[\'id\']}',1000,600)"
+						style="color:blue"> {:exam_status($v['auth_status'])}</a></td>
 						<td class="td-status">
-							<a title="编辑"  href="{:url('admin/user/user_status')}?id={$v['id']}&user_status={$v['id']}">
-								<i class="layui-icon">&#xe642;</i>
-							</a>
+							<!-- <a title="编辑"  href="{:url('admin/user/user_status')}?id={$v['id']}&user_status={$v['id']}">
+								<i class="layui-icon">&#xe642;</i>编辑
+							</a> -->
 							<a title="删除" href="{:url('admin/user/member_del')}?id={$v['id']}">
 								<i class="layui-icon">&#xe640;</i>删除
 							</a>

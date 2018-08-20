@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\product\product_mode.html";i:1533545245;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"E:\shop\public/../application/admin\view\product\product_mode.html";i:1534406678;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -48,7 +48,7 @@
             </form>
         </div>
         <div class="weadmin-block">
-            <a class="layui-btn" href="<?php echo url('admin/product/product_mode_add'); ?>">
+        <a class="layui-btn" onclick="WeAdminShow('商品添加信息','product_mode_add.html',600,600)">
                             <i class="layui-icon"></i> 添加</a>
             <span class="fr" style="line-height:40px">共有数据：<?php echo $count; ?> 条</span>
         </div>
@@ -78,7 +78,7 @@
                   
                     <td class="td-manage">
                        
-                        <a title="编辑"  href="<?php echo url('admin/product/product_mode_edit'); ?>?id=<?php echo $v['id']; ?>">
+                        <a title="编辑" onclick="WeAdminShow('商品添加信息','product_mode_edit.html?id=<?php echo $v['id']; ?>',600,600)" >
                             <i class="layui-icon">&#xe642;</i>
                             编辑
                         </a>

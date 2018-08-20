@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_attribute.html";i:1533543927;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_attribute.html";i:1534492431;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -47,7 +47,7 @@
             </form>
         </div>
         <div class="weadmin-block">
-            <a class="layui-btn" href="<?php echo url('admin/product/product_attribute_add'); ?>">
+            <a class="layui-btn" onclick="WeAdminShow('商品添加信息','product_attribute_add.html',800,600)" >
                 <i class="layui-icon"></i>添加</a>
             <span class="fr" style="line-height:40px">共有数据：<?php echo $count; ?>条</span>
         </div>
@@ -64,8 +64,7 @@
                     <th>商品所属模型</th>
                     <th>属性值的输入方式</th>
                     <th>录入方式</th>
-                    <th>可选列表</th>
-                    
+<!--                     <th>可选列表</th> -->
                     <th>排序</th>
                     <th>检索</th>
                     <th>操作</th>
@@ -89,7 +88,7 @@
                     <td><?php echo $v['indx']; ?></td>
                     <td><?php echo $v['sort']; ?></td>
                     <td class="td-manage">
-                        <a title="编辑"  href="<?php echo url('admin/product/product_attribute_edit'); ?>?id=<?php echo $v['attr_id']; ?>">
+                        <a title="编辑" onclick="WeAdminShow('商品属性编辑','product_attribute_edit.html?id=<?php echo $v['attr_id']; ?>',800,600)" >
                             <i class="layui-icon">&#xe642;</i>编辑
                         </a>
                         <a title="删除"  href="<?php echo url('admin/product/product_attribute_del'); ?>?id=<?php echo $v['attr_id']; ?>">
@@ -101,18 +100,10 @@
             </tbody>
         </table>
         <div class="page">
-            <div>
-                <a class="prev" href="">&lt;&lt;</a>
-                <a class="num" href="">1</a>
-                <span class="current">2</span>
-                <a class="num" href="">3</a>
-                <a class="num" href="">...</a>
-                <a class="next" href="">&gt;&gt;</a>
-            </div>
+           <?php echo $attr->render(); ?>
         </div>
        <!--  31.21603750     ["ktghgl"]=> string(1) "3"-->
     </div>
-    <?php echo $attr->render(); ?>
     <!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
     <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
     <script src="/static/static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>

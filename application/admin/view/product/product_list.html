@@ -47,9 +47,8 @@
             </form>
         </div>
         <div class="weadmin-block">
-             <a class="layui-btn" href="{:url('admin/product/product_list_add')}">
-                <i class="layui-icon"></i>添加</a> 
-            <span class="fr" style="line-height:40px">共有数据：{$count} 条</span>
+             <a class="layui-btn"  onclick="WeAdminShow('商品添加信息','product_list_add.html',1000,600)">
+                <i class="layui-icon"></i>添加</a>
         </div>
         <table class="layui-table" id="memberList">
             <thead>
@@ -86,8 +85,8 @@
                             <i class="layui-icon">&#xe605;</i>
                         </div>
                     </td>
-                    <td><a href="{:url('admin/product/product_list_addimage')}?id={$v['good_id']}">添加相册</a>  </td>
-                    <td><a href="{:url('admin/product/product_list_type')}?id={$v['good_id']}">编辑模型</a>  </td>
+                    <td><a onclick="WeAdminShow('商品编辑','product_list_addimage.html?id={$v[\'good_id\']}',1000,660)">添加相册</a>  </td>
+                    <td><a onclick="WeAdminShow('商品编辑','product_list_type.html?id={$v[\'good_id\']}',1000,660)">编辑模型</a>  </td>
                     <td>{$v['good_id']}</td>
                     <td>{$v['good_name']}</td>
                     <td>{$v['good_sn']}</td>
@@ -120,7 +119,7 @@
                     </td>
                     
                     <td class="td-manage">
-                        <a title="编辑商品数据"  href="{:url('admin/product/product_list_edit')}?id={$v['good_id']}">
+                        <a title="编辑商品数据"  onclick="WeAdminShow('商品编辑','product_list_edit.html?id={$v[\'good_id\']}',1000,660)">
                             <i class="layui-icon">&#xe642;</i>编辑
                         </a>
                         <a title="删除选中的商品"  href="{:url('admin/product/product_list_del')}?id={$v['good_id']}">
