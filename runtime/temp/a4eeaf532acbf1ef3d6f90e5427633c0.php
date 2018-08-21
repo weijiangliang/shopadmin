@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"E:\shop\public/../application/admin\view\product\product_mode_add.html";i:1533223722;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"E:\shop\public/../application/admin\view\product\product_mode_add.html";i:1534851247;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/static/css/font.css">
     <link rel="stylesheet" href="/static/static/css/weadmin.css">
     <link rel="stylesheet" href="/static/static/css/bootstrap.min.css">
+    <script src="/static/static/js/jquery.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -28,10 +29,31 @@
             <input type="submit" name="sub" value="确认提交" class="sub">
 
         </form>
-
+        <button id="btn" onclick="fn()">关闭</button>
         <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+      <!--   <script src="/static/lib/layui/lay/modules/layer.js" charset="utf-8"></script> -->
     </div>
 </body>
+<script type="text/javascript">
+function fn(){
+    alert('请输入值');
+    window.parent.location.reload();
+ // $(function(){
+ //            layui.use(layer, function(){
+ //             var layer = layui.layer;
+ //             layer.msg("'.$msg.'",{icon:"6",time:'.($time*1000).'});
+ //             });  
+ //            setTimeout(function(){
+ //                if($url==''){
+ //                   layer.closeAll(); 
+ //                }else{
+ //                  self.parent.location.href="'.$url.'";
+ //                }
+ //            },2000)
+ //        }); 
+    
+}
+</script>
 <style>
     .Tips {
         background-color: bisque;

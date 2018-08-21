@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\index\index.html";i:1534744441;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\shop\public/../application/admin\view\index\index.html";i:1534828478;}*/ ?>
 <!doctype html>
 <html lang="en">
 
@@ -274,6 +274,49 @@
 							<a _href="<?php echo url('admin/coupon/coupon_user_list'); ?>">
 								<i class="iconfont">&#xe6a7;</i>
 								<cite>用户优惠券</cite>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<i class="iconfont">&#xe723;</i>
+						<cite>广告轮播图</cite>
+						<i class="iconfont nav_right">&#xe697;</i>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a _href="<?php echo url('admin/Advimage/advimage_list'); ?>">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>轮播图列表</cite>
+							</a>
+						</li>
+						<!-- <li>
+							<a _href="<?php echo url('admin/coupon/coupon_user_list'); ?>">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>用户优惠券</cite>
+							</a>
+						</li> -->
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;">
+						<i class="iconfont">&#xe723;</i>
+						<cite>礼包</cite>
+						<i class="iconfont nav_right">&#xe697;</i>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a _href="<?php echo url('admin/Gift/gift_list'); ?>">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>礼包列表</cite>
+							</a>
+						</li>
+						<li>
+							<a _href="<?php echo url('admin/Gift/gift_mall_list'); ?>">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>礼包套餐</cite>
 							</a>
 						</li>
 					</ul>

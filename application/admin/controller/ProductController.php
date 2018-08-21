@@ -741,6 +741,11 @@ public function uploads(){
     { 
       if(Request::instance()->isPost()){
         $data['name']=input('name');
+        if(!$data['name']){
+          echo "<script type=\"text/javascript\">alert('请输入值');window.parent.location.reload(); </script>";
+          die;
+
+        }
         $types = db('goods_type')->insert($data);
         if($types){
           $this->success('添加成功',url('admin/product/product_mode'));
