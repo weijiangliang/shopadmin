@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_brand_add.html";i:1534470946;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_brand_add.html";i:1534471447;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +35,7 @@
         </div>
          <div class="inp_box">
             <span>品牌logo：</span>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="file" name="brand_logo" class="inp_list">
+            <input type="file" name="brand_logo" class="inp_list">
         </div>
         <div class="inp_box">
             <span>所属分类：</span>

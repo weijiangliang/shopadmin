@@ -42,13 +42,12 @@ class LogisticsController extends AdminbaseController
 
 	  		}
 	  	if($file){
-          $dataimg = $this->upload('express',$file);
-            if($dataimg['statu']==0){
-              $this->error($dataimg['msg']);
-              die;
-            }else{
-              $data['shipping_logo']=$dataimg['imgurl'];
+         $imgurl = Upload::image('express',$file);
+          if(empty($imgurl)){
+            $this->error('图片上传有误');
+            die;
             }
+            $data['shipping_logo']=$imgurl;
          }
          $data['shipping_name'] = $shipping_name;
          $data['shipping_code'] = $shipping_code;
@@ -79,13 +78,12 @@ class LogisticsController extends AdminbaseController
 	  		die;
 	  		}
 	  		if($file){
-            $dataimg = $this->upload('express',$file);
-            if($dataimg['statu']==0){
-              $this->error($dataimg['msg']);
-              die;
-            }else{
-              $data['shipping_logo']=$dataimg['imgurl'];
+            $imgurl = Upload::image('express',$file);
+          if(empty($imgurl)){
+            $this->error('图片上传有误');
+            die;
             }
+            $data['shipping_logo']=$imgurl;
          }
          $data['shipping_name'] = $shipping_name;
          $data['shipping_code'] = $shipping_code;
@@ -146,30 +144,30 @@ public function express_del(){
     }
 }
 
-//上传图片
-public function upload($flag,$file){
-   if($file){
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-        $rootpath = ROOT_PATH . 'public' . DS . 'uploads';
-        if($info){   
-          $imgurl = date('Ymd').'/'. $info->getFilename();
-          $imagaddr =  $rootpath.'/'.$imgurl;
-          $imgurl = Upload::image($flag,$imagaddr);
-             $callback=array(
-            'statu' =>1,
-            'imgurl' => $imgurl
-            );
-            return $callback;
-        }else{
-            $msg=$file->getError();
-            $callback=array(
-            'statu' => 0,
-            'msg' => $msg
-            );
-            return $callback;
-        }
-    }
-}
+// //上传图片
+// public function upload($flag,$file){
+//    if($file){
+//         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+//         $rootpath = ROOT_PATH . 'public' . DS . 'uploads';
+//         if($info){   
+//           $imgurl = date('Ymd').'/'. $info->getFilename();
+//           $imagaddr =  $rootpath.'/'.$imgurl;
+//           $imgurl = Upload::image($flag,$imagaddr);
+//              $callback=array(
+//             'statu' =>1,
+//             'imgurl' => $imgurl
+//             );
+//             return $callback;
+//         }else{
+//             $msg=$file->getError();
+//             $callback=array(
+//             'statu' => 0,
+//             'msg' => $msg
+//             );
+//             return $callback;
+//         }
+//     }
+// }
 
 //快递状态
 public function ajaxexpress_stautus(){

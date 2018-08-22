@@ -8,6 +8,7 @@ use think\Db;
 use think\Session;
 use app\admin\model\Activity;
 use app\admin\model\Activitygoods;
+use lib\Upload;
 class ActiveController extends AdminbaseController
 {
    
@@ -50,13 +51,12 @@ public function activity_list_add(){
 		//$admin_name = session::get('username');
 		//$data['admin_id']=db('admin')->where('admin_name',$admin_name)->field('admin_id')->find();
         if($file){
-        $dataimg = $this->upload($flag,$file);
-            if($dataimg['statu']==0){
-              $this->error($dataimg['msg']);
-              die;
-            }else{
-              $data['thumb']=$dataimg['imgurl'];
+        $imgurl = Upload::image('activity',$file);
+          if(empty($imgurl)){
+            $this->error('图片上传有误');
+            die;
             }
+            $data['thumb']=$imgurl;
         }
 	    $active = Activity::create($data);
 	    if(!$active){
@@ -89,13 +89,12 @@ public function activity_list_edit(){
 		//$admin_name = session::get('username');
 		//$data['admin_id']=db('admin')->where('admin_name',$admin_name)->field('admin_id')->find();
         if($file){
-        $dataimg = $this->upload($flag,$file);
-            if($dataimg['statu']==0){
-              $this->error($dataimg['msg']);
-              die;
-            }else{
-              $data['thumb']=$dataimg['imgurl'];
+         $imgurl = Upload::image('activity',$file);
+          if(empty($imgurl)){
+            $this->error('图片上传有误');
+            die;
             }
+            $data['thumb']=$imgurl;
         }
 	    $active = Activity::where('id',$id)->update($data);
 	    if(!$active){
@@ -288,28 +287,28 @@ public function gift_list_edit(){
 
 
 
-//上传图片
-public function upload($flag,$file){
-   if($file){
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-        $rootpath = ROOT_PATH . 'public' . DS . 'uploads';
-        if($info){
-          $imgurl = date('Ymd').'/'. $info->getFilename();
-          $imagaddr =  $rootpath.'/'.$imgurl;
-          $imgurl = Upload::image($flag,$imagaddr);
-             $callback=array(
-            'statu' =>1,
-            'imgurl' => $imgurl
-            );
-            return $callback;
-        }else{
-            $msg=$file->getError();
-            $callback=array(
-            'statu' => 0,
-            'msg' => $msg
-            );
-            return $callback;
-        }
-    }
-}
+// //上传图片
+// public function upload($flag,$file){
+//    if($file){
+//         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+//         $rootpath = ROOT_PATH . 'public' . DS . 'uploads';
+//         if($info){
+//           $imgurl = date('Ymd').'/'. $info->getFilename();
+//           $imagaddr =  $rootpath.'/'.$imgurl;
+//           $imgurl = Upload::image($flag,$imagaddr);
+//              $callback=array(
+//             'statu' =>1,
+//             'imgurl' => $imgurl
+//             );
+//             return $callback;
+//         }else{
+//             $msg=$file->getError();
+//             $callback=array(
+//             'statu' => 0,
+//             'msg' => $msg
+//             );
+//             return $callback;
+//         }
+//     }
+// }
 }

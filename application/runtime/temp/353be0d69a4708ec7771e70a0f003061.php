@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_list_type.html";i:1534729502;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"E:\shop\public/../application/admin\view\product\product_list_type.html";i:1534729840;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,7 +177,7 @@ $("#spec_type").change(function(){
               var data_spec_option = $(obj);
               $(".div_contentlist").append(data_spec_option);
        });
-}
+     }
     });
 
 });

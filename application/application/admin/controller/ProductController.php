@@ -144,13 +144,13 @@ public function product_brand()
         $data['desc']=trim(input('desc'));
         $data['sort']=trim(input('sort'));
         if($file){
-          $dataimg = $this->upload('brand',$file);
-            if($dataimg['statu']==0){
-              $this->error($dataimg['msg']);
-              die;
-            }else{
-              $data['brand_logo']=$dataimg['imgurl'];
+          $imgurl = Upload::image('brand',$file);
+          if(empty($imgurl)){
+            $this->error('图片上传有误');
+            die;
             }
+           $data['brand_logo']=$imgurl;
+
         }
      $brand = db('brand')->insert($data);
      if($brand){
@@ -181,13 +181,13 @@ public function product_brand()
         $data['desc']=trim(input('desc'));
         $data['sort']=trim(input('sort'));
         if($file){
-          $dataimg = $this->upload('brand',$file);
-            if($dataimg['statu']==0){
-              $this->error($dataimg['msg']);
-              die;
-            }else{
-              $data['brand_logo']=$dataimg['imgurl'];
+          $imgurl = Upload::image('activity',$file);
+          if(empty($imgurl)){
+            $this->error('图片上传有误');
+            die;
             }
+          $data['brand_logo']=$imgurl;
+
         }
        $brandup = db('brand')->where('id',$brand_id)->update($data);
        if($brandup){
@@ -267,13 +267,12 @@ public function product_brand_del()
      $this->error('所有数据不能为空');
        }
        if($file){
-          $dataimg = $this->upload('category',$file);
-            if($dataimg['statu']==0){
-              $this->error($dataimg['msg']);
-              die;
-            }else{
-              $data['thumb']=$dataimg['imgurl'];
+          $imgurl = Upload::image('category',$file);
+          if(empty($imgurl)){
+            $this->error('图片上传有误');
+            die;
             }
+          $data['thumb']=$imgurl;
         }
          $cate_id = db('goods_category')->insertGetId($data);
          $parent = db('goods_category')->where('id',$data['parent_id'])->find();
@@ -568,13 +567,12 @@ public function product_list()
       $data['good_content']=trim(input('desc'));
       $data['add_time']=time();
        if($file){
-          $dataimg = $this->upload('goods',$file);
-            if($dataimg['statu']==0){
-              $this->error($dataimg['msg']);
-              die;
-            }else{
-              $data['good_thumb']=$dataimg['imgurl'];
+          $imgurl = Upload::image('goods',$file);
+          if(empty($imgurl)){
+            $this->error('图片上传有误');
+            die;
             }
+           $data['good_thumb']=$imgurl;
         }
       $goods = db('goods')->insert($data);
         if($goods){
@@ -780,50 +778,65 @@ public function product_list_addimage(){
            // $uploadPath = ROOT_PATH . 'public' . DS . 'uploads';
             //步骤6：将临时目录下的文件移动到指定目录下
               // $info = $file->move($uploadPath);
-               $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-               $rootpath = ROOT_PATH . 'public' . DS . 'uploads';
+                   //$info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+                   //$rootpath = ROOT_PATH . 'public' . DS . 'uploads';
               //步骤7：判断是否移动成功
-              if($info) {
-                //生成缩略图
-                //$temp = $uploadPath . DS;
-                $imgurl = date('Ymd').'/'. $info->getFilename();
-                $imagaddr =  $rootpath.'/'.$imgurl;
-                $imgurl = Upload::image($flag,$imagaddr);
-                if(!$imgurl){
-                 $this->error('添加相册失败');
-                 die;
-                }
-              $data['image_url']=$imgurl;
-              $images = db('goods_images')->insert($data);
-                if(!$images){
-                 $this->error('添加相册失败');
-                 die;
-                }
-                // $bigImg = date('Ymd', time()) . DS . 'big_' . $info->getFilename();
-                // $midImg = date('Ymd', time()) . DS . 'mid_' . $info->getFilename();
-                // $smaImg = date('Ymd', time()) . DS . 'sma_' . $info->getFilename();
+           //   if($info) {
+                  $imgurl = Upload::image('Album',$file);
+                  if(empty($imgurl)){
+                    $this->error('图片上传有误');
+                    die;
+                    }
+                    $data['image_url']=$imgurl;
+                    $images = db('goods_images')->insert($data);
+                  if(!$images){
+                    $this->error('添加相册失败');
+                    die;
+                    }
 
-                //       $image = \think\Image::open($file);
-                //       $image->thumb(800, 800, \think\Image::THUMB_CENTER)->save($temp . $bigImg);
 
-                //       $image = \think\Image::open($file);
-                //       $image->thumb(350, 350, \think\Image::THUMB_CENTER)->save($temp . $midImg);
 
-                //       $image = \think\Image::open($file);
-                //       $image->thumb(50, 50, \think\Image::THUMB_CENTER)->save($temp . $smaImg);
 
-                      // GoodsPics::create([
-                      //   //'goods_id' => 1,
-                      //   'goods_id' => $goods_id,
-                      //   'pics_ori' => $info->getSaveName(),
-                      //   'pics_big' => $bigImg,
-                      //   'pics_mid' => $midImg,
-                      //   'pics_sma' => $smaImg,
-                      // ]);
-              }else{
-                  // 上传失败获取错误信息
-                  $this->error($file->getError());
-              }
+              //   //生成缩略图
+              //   //$temp = $uploadPath . DS;
+              //   $imgurl = date('Ymd').'/'. $info->getFilename();
+              //   $imagaddr =  $rootpath.'/'.$imgurl;
+              //   $imgurl = Upload::image($flag,$imagaddr);
+              //   if(!$imgurl){
+              //    $this->error('添加相册失败');
+              //    die;
+              //   }
+              // $data['image_url']=$imgurl;
+              // $images = db('goods_images')->insert($data);
+              //   if(!$images){
+              //    $this->error('添加相册失败');
+              //    die;
+              //   }
+              //   // $bigImg = date('Ymd', time()) . DS . 'big_' . $info->getFilename();
+              //   // $midImg = date('Ymd', time()) . DS . 'mid_' . $info->getFilename();
+              //   // $smaImg = date('Ymd', time()) . DS . 'sma_' . $info->getFilename();
+
+              //   //       $image = \think\Image::open($file);
+              //   //       $image->thumb(800, 800, \think\Image::THUMB_CENTER)->save($temp . $bigImg);
+
+              //   //       $image = \think\Image::open($file);
+              //   //       $image->thumb(350, 350, \think\Image::THUMB_CENTER)->save($temp . $midImg);
+
+              //   //       $image = \think\Image::open($file);
+              //   //       $image->thumb(50, 50, \think\Image::THUMB_CENTER)->save($temp . $smaImg);
+
+              //         // GoodsPics::create([
+              //         //   //'goods_id' => 1,
+              //         //   'goods_id' => $goods_id,
+              //         //   'pics_ori' => $info->getSaveName(),
+              //         //   'pics_big' => $bigImg,
+              //         //   'pics_mid' => $midImg,
+              //         //   'pics_sma' => $smaImg,
+              //         // ]);
+                    // }else{
+                    //     // 上传失败获取错误信息
+                    //     $this->error($file->getError());
+                    // }
           }
         }
       $this->success('上传成功',url('product/product_list'));
@@ -849,9 +862,12 @@ public function product_list_addimage(){
     $goodspic =db('goods_images')->find($id);
     if (!$goodspic) $this->error('非法操作');
     $path = ROOT_PATH . 'public' . DS . 'uploads' . DS;
-    $rs1 = @unlink($path . $goodspic['image_url']);
-    $rs = false;
-    if ($rs1) $rs = db('goods_images')->delete($id);
+    //$rs1 = @unlink($path . $goodspic['image_url']);
+    //$rs = false;
+    //if ($rs1) 
+    $rs = db('goods_images')->delete($id);
+    // var_dump(db('goods_images')->getLastsql());
+    // die;
     if($rs) {
       return $this->success('删除成功');
     } else {
@@ -998,30 +1014,30 @@ public function product_list_addimage(){
 
     }
 
-//上传图片
-public function upload($flag,$file){
-   if($file){
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-         $rootpath = ROOT_PATH . 'public' . DS . 'uploads';
-        if($info){ 
-          $imgurl = date('Ymd').'/'. $info->getFilename();
-          $imagaddr =  $rootpath.'/'.$imgurl;
-          $imgurl = Upload::image($flag,$imagaddr);
-             $callback=array(
-            'statu' =>1,
-            'imgurl' => $imgurl
-            );
-            return $callback;
-        }else{
-            $msg=$file->getError();
-            $callback=array(
-            'statu' => 0,
-            'msg' => $msg
-            );
-            return $callback;
-        }
-    }
-}
+// //上传图片
+// public function upload($flag,$file){
+//    if($file){
+//         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+//          $rootpath = ROOT_PATH . 'public' . DS . 'uploads';
+//         if($info){ 
+//           $imgurl = date('Ymd').'/'. $info->getFilename();
+//           $imagaddr =  $rootpath.'/'.$imgurl;
+//           $imgurl = Upload::image($flag,$imagaddr);
+//              $callback=array(
+//             'statu' =>1,
+//             'imgurl' => $imgurl
+//             );
+//             return $callback;
+//         }else{
+//             $msg=$file->getError();
+//             $callback=array(
+//             'statu' => 0,
+//             'msg' => $msg
+//             );
+//             return $callback;
+//         }
+//     }
+// }
 
 
 
