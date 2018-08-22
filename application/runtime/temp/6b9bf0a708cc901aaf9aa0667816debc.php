@@ -1,0 +1,144 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"E:\shop\public/../application/admin\view\order\shipping.html";i:1534132080;}*/ ?>
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>XXXX后台管理系统-添加订单</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="/static/static/css/font.css">
+<!-- 		<link rel="stylesheet" href="/static/static/css/weadmin.css"> -->
+		<script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+		<!--[if lt IE 9]>
+	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+
+	<body>
+		<div class="weadmin-body">
+			<form class="layui-form" action="<?php echo url('admin/order/shipping'); ?>" method="post">
+			<input type="hidden" name="user_inof_id" value="<?php echo $user_info_id; ?>">
+			<div class="layui-form-item">
+					<label for="order_username" class="layui-form-label">
+                  <span class="we-red">*</span>用户名
+              </label>
+					<div class="layui-input-inline">
+					<select  type="text" id="order_username" name="shipping_id" required="" lay-verify="required" autocomplete="off" class="layui-input">
+					<?php if(is_array($shipping) || $shipping instanceof \think\Collection || $shipping instanceof \think\Paginator): if( count($shipping)==0 ) : echo "" ;else: foreach($shipping as $key=>$v): ?>
+					<option value="<?php echo $v['shipping_id']; ?>"><?php echo $v['shipping_name']; ?></option>
+					<?php endforeach; endif; else: echo "" ;endif; ?>
+					</select>
+						
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label for="order_username" class="layui-form-label">
+                  <span class="we-red">*</span>输入物流单号
+              </label>
+					<div class="layui-input-inline">
+						<input type="text" id="order_username" name="shipping_num" required="" lay-verify="required" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<!-- <div class="layui-form-item">
+					<label for="order_shr" class="layui-form-label">
+                  <span class="we-red">*</span>收货人
+              </label>
+					<div class="layui-input-inline">
+						<input type="text" id="order_shr" name="order_shr" required="" lay-verify="required" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label for="order_phone" class="layui-form-label">
+                  <span class="we-red">*</span>手机
+              </label>
+					<div class="layui-input-inline">
+						<input type="text" id="order_phone" name="order_phone" required="" lay-verify="phone" autocomplete="off" class="layui-input">
+					</div>
+				</div> -->
+				<input  type="submit" class="layui-btn" lay-submit="" lay-filter="sreach" value="提交">
+					
+				
+		</form>
+		</div>
+		<!-- <script>
+			layui.extend({
+				admin: '{/}../../static/js/admin'
+			});
+			layui.use(['form', 'admin', 'jquery', 'table', 'layer'], function() {
+				var form = layui.form,
+					admin = layui.admin,
+					$ = layui.jquery,
+					table = layui.table,
+					layer = layui.layer;
+
+				//自定义验证规则
+				form.verify({
+					nikename: function(value) {
+						if(value.length < 5) {
+							return '昵称至少得5个字符啊';
+						}
+					},
+					pass: [/(.+){6,12}$/, '密码必须6到12位'],
+					repass: function(value) {
+						if($('#L_pass').val() != $('#L_repass').val()) {
+							return '两次密码不一致';
+						}
+					}
+				});
+
+				//监听提交
+				form.on('submit(add)', function(data) {
+					console.log(data);
+					//发异步，把数据提交给php
+					layer.alert("增加成功", {
+						icon: 6
+					}, function() {
+						// 获得frame索引
+						var index = parent.layer.getFrameIndex(window.name);
+						//关闭当前frame
+						parent.layer.close(index);
+					});
+					return false;
+				});
+				
+				var num = 3;
+
+			window.addTable = function() {
+				var tableHtml = "";
+				tableHtml += '<tr id="tr' + num + '">' +
+					'<td>'+num+'</td>' +
+					'<td><div class="layui-input-inline"><input type="text" name="canshu1" class="layui-input"></div></td>' +
+					'<td><div class="layui-input-inline"><input type="text" name="canshu2" class="layui-input"></div></td>' +
+					'<td><div class="layui-input-inline"><input type="text" name="canshu3" class="layui-input"></div></td>' +
+					'<td><div class="layui-input-inline"><input type="text" name="canshu4" class="layui-input"></div></td>' +
+					'<td><a style="cursor: pointer; color: blue;" onclick="removeTr(' + num + ')">删除</a>' +
+					'</td>' +
+					'</tr>';
+//				tableHtml +='<tr>'+
+//								'<td>2</td>'+
+//								'<td>haier海尔 BC-93TMPF 93升单门冰箱</td>'+
+//								'<td>0.01</td>'+
+//								'<td>984</td>'+
+//								'<td>9.84</td>'+
+//								'<td><a style="cursor: pointer; color: blue;" onclick="removeTr(2)">删除</a></td>'+
+//							'</tr>';
+
+				var elements = $("#myTable").children().length; //表示id为“mtTable”的标签下的子标签的个数
+
+				$("#myTable").children().eq(elements - 1).after(tableHtml); //在表头之后添加空白行
+				num++;
+			}
+			//删除行
+			function removeTr(trNum) {
+				$("#tr" + trNum).remove();
+			}
+
+			});
+		</script> -->
+	</body>
+
+</html>
